@@ -1,0 +1,28 @@
+# BasicUvIndexFlow
+
+main: kit: flow: BasicUvIndexFlow:
+{
+  entity: "uv_index",
+  kind: "basic",
+  name: "BasicUvIndexFlow",
+  step: [
+    {
+      input: {
+        ref: "uv_index_ref01",
+        srcdatavar: "uv_index_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-uv_index_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicUvIndexFlow"
+}

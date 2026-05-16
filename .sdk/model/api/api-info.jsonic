@@ -1,0 +1,27 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        email: "feedback@data.gov.sg"
+      }
+      description: "The UV Index API provides real-time data on ultraviolet index levels for various locations in Singapore. Users can retrieve the latest UV index information updated every hour between 7 AM and 7 PM. The API allows for filtering by date or datetime via query parameters."
+      license: {
+        name: "Singapore Open Data Licence"
+        url: "https://data.gov.sg/open-data-licence"
+      }
+      servers: [
+        {
+          description: "Production server"
+          url: "https://data.gov.sg/api/action"
+        }
+      ]
+      title: "UV Index API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

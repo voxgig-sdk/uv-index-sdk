@@ -1,0 +1,418 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "UV Index API",
+    "description": "The UV Index API provides real-time data on ultraviolet index levels for various locations in Singapore. Users can retrieve the latest UV index information updated every hour between 7 AM and 7 PM. The API allows for filtering by date or datetime via query parameters.",
+    "version": "1.0.0",
+    "contact": {
+      "email": "feedback@data.gov.sg"
+    },
+    "license": {
+      "name": "Singapore Open Data Licence",
+      "url": "https://data.gov.sg/open-data-licence"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://data.gov.sg/api/action",
+      "description": "Production server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "UV Index",
+      "description": "Ultraviolet Index data operations"
+    }
+  ],
+  "paths": {
+    "/datastore_search": {
+      "get": {
+        "tags": [
+          "UV Index"
+        ],
+        "summary": "Get UV Index data",
+        "description": "Retrieve ultraviolet index levels for various locations in Singapore. Data is updated every 30 minutes between 7 AM and 7 PM.",
+        "operationId": "getUVIndex",
+        "parameters": [
+          {
+            "name": "resource_id",
+            "in": "query",
+            "description": "The resource ID for UV Index dataset",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "d_1b676cd174a9af4704fdb3f9aa58ff5e"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 100,
+              "minimum": 1,
+              "maximum": 1000
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "filters",
+            "in": "query",
+            "description": "JSON string to filter results by date or datetime",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "{\"timestamp\":\"2024-07-22T12:00:00\"}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with UV Index data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "result": {
+                      "type": "object",
+                      "properties": {
+                        "resource_id": {
+                          "type": "string",
+                          "example": "d_1b676cd174a9af4704fdb3f9aa58ff5e"
+                        },
+                        "fields": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "records": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "timestamp": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "Timestamp of the UV index reading"
+                              },
+                              "uv_index": {
+                                "type": "number",
+                                "description": "UV index value"
+                              },
+                              "location": {
+                                "type": "string",
+                                "description": "Location in Singapore"
+                              }
+                            }
+                          }
+                        },
+                        "total": {
+                          "type": "integer",
+                          "description": "Total number of records available"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/datastore_search_sql": {
+      "get": {
+        "tags": [
+          "UV Index"
+        ],
+        "summary": "Search UV Index data using SQL",
+        "description": "Retrieve UV index data using SQL queries for advanced filtering and aggregation",
+        "operationId": "searchUVIndexSQL",
+        "parameters": [
+          {
+            "name": "sql",
+            "in": "query",
+            "description": "SQL query to execute against the UV Index dataset",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "SELECT * FROM \"d_1b676cd174a9af4704fdb3f9aa58ff5e\" WHERE timestamp >= '2024-07-22' LIMIT 100"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with query results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "result": {
+                      "type": "object",
+                      "properties": {
+                        "fields": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "records": {
+                          "type": "array",
+                          "items": {
+                            "type": "object"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid SQL query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/package_show": {
+      "get": {
+        "tags": [
+          "UV Index"
+        ],
+        "summary": "Get UV Index dataset metadata",
+        "description": "Retrieve metadata information about the UV Index dataset including update frequency, data period, and resource details",
+        "operationId": "getUVIndexMetadata",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Dataset identifier",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "d_1b676cd174a9af4704fdb3f9aa58ff5e"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with dataset metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "result": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "example": "d_1b676cd174a9af4704fdb3f9aa58ff5e"
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "ultraviolet-index-uvi"
+                        },
+                        "title": {
+                          "type": "string",
+                          "example": "Ultraviolet Index (UVI)"
+                        },
+                        "notes": {
+                          "type": "string",
+                          "description": "Dataset description"
+                        },
+                        "organization": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "example": "nea"
+                            },
+                            "title": {
+                              "type": "string",
+                              "example": "National Environment Agency"
+                            }
+                          }
+                        },
+                        "metadata_created": {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2024-07-22T00:00:00"
+                        },
+                        "metadata_modified": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "resources": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "format": {
+                                "type": "string"
+                              },
+                              "url": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Dataset not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": false
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string",
+                "description": "Error message"
+              },
+              "__type": {
+                "type": "string",
+                "description": "Error type"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Official API Documentation",
+    "url": "https://data.gov.sg/datasets?formats=API&sort=relevancy&page=1&resultId=d_1b676cd174a9af4704fdb3f9aa58ff5e"
+  }
+}

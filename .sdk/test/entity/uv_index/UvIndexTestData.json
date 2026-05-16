@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "uv_index": {
+      "UV_INDEX00": {
+        "result": {},
+        "success": false
+      },
+      "UV_INDEX01": {
+        "result": {},
+        "success": false
+      },
+      "UV_INDEX02": {
+        "result": {},
+        "success": false
+      }
+    }
+  },
+  "new": {
+    "uv_index": {
+      "uv_index_ref01": {
+        "result": {},
+        "success": false
+      }
+    }
+  }
+}

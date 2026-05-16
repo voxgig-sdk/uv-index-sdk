@@ -1,0 +1,20 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 1
+  metrics: count: path: 3
+  metrics: count: method: 3
+
+  entity: uv_index: {
+    path: "/datastore_search": {
+      op: load: method: *GET
+    }
+    path: "/datastore_search_sql": {
+      op: load: method: *GET
+    }
+    path: "/package_show": {
+      op: load: method: *GET
+    }
+  }
+
+}
