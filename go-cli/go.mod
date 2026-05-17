@@ -1,0 +1,13 @@
+module github.com/voxgig-sdk/uv-index-sdk/go-cli
+
+go 1.24.7
+
+require github.com/voxgig-sdk/uv-index-sdk/go v0.0.0
+
+require github.com/aql-lang/aql/eng v0.0.0
+
+require github.com/jsonicjs/jsonic/go v0.1.6 // indirect
+
+replace github.com/voxgig-sdk/uv-index-sdk/go => ../go
+
+replace github.com/aql-lang/aql/eng => /home/richard/Projects/aql-lang/aql/eng/go

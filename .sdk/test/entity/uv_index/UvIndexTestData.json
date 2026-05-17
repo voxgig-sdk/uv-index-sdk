@@ -3,15 +3,18 @@
     "uv_index": {
       "UV_INDEX00": {
         "result": {},
-        "success": false
+        "success": false,
+        "id": "UV_INDEX00"
       },
       "UV_INDEX01": {
         "result": {},
-        "success": false
+        "success": false,
+        "id": "UV_INDEX01"
       },
       "UV_INDEX02": {
         "result": {},
-        "success": false
+        "success": false,
+        "id": "UV_INDEX02"
       }
     }
   },
