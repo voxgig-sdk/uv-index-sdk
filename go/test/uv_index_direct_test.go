@@ -105,14 +105,12 @@ func uv_indexDirectSetup(mockres any) *uv_indexDirectSetupResult {
 	env := envOverride(map[string]any{
 		"UVINDEX_TEST_UV_INDEX_ENTID": map[string]any{},
 		"UVINDEX_TEST_LIVE":    "FALSE",
-		"UVINDEX_APIKEY":       "NONE",
 	})
 
 	live := env["UVINDEX_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["UVINDEX_APIKEY"],
 		}
 		client := sdk.NewUvIndexSDK(mergedOpts)
 

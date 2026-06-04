@@ -20,9 +20,6 @@ class UvIndexConfig
             ],
             "options" => [
                 "base" => "https://data.gov.sg/api/action",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
