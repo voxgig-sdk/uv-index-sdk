@@ -14,6 +14,9 @@ local function make_config()
     },
     options = {
       base = "https://data.gov.sg/api/action",
+      auth = {
+        prefix = "Bearer",
+      },
       headers = {
         ["content-type"] = "application/json",
       },
@@ -25,63 +28,65 @@ local function make_config()
       ["uv_index"] = {
         ["fields"] = {
           {
+            ["active"] = true,
             ["name"] = "result",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["active"] = true,
             ["index$"] = 0,
           },
           {
+            ["active"] = true,
             ["name"] = "success",
             ["req"] = false,
             ["type"] = "`$BOOLEAN`",
-            ["active"] = true,
             ["index$"] = 1,
           },
         },
         ["name"] = "uv_index",
         ["op"] = {
           ["load"] = {
+            ["input"] = "data",
             ["name"] = "load",
             ["points"] = {
               {
+                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
+                      ["active"] = true,
                       ["example"] = "{\"timestamp\":\"2024-07-22T12:00:00\"}",
                       ["kind"] = "query",
                       ["name"] = "filter",
                       ["orig"] = "filter",
                       ["reqd"] = false,
                       ["type"] = "`$STRING`",
-                      ["active"] = true,
                     },
                     {
+                      ["active"] = true,
                       ["example"] = 100,
                       ["kind"] = "query",
                       ["name"] = "limit",
                       ["orig"] = "limit",
                       ["reqd"] = false,
                       ["type"] = "`$INTEGER`",
-                      ["active"] = true,
                     },
                     {
+                      ["active"] = true,
                       ["example"] = 0,
                       ["kind"] = "query",
                       ["name"] = "offset",
                       ["orig"] = "offset",
                       ["reqd"] = false,
                       ["type"] = "`$INTEGER`",
-                      ["active"] = true,
                     },
                     {
+                      ["active"] = true,
                       ["example"] = "d_1b676cd174a9af4704fdb3f9aa58ff5e",
                       ["kind"] = "query",
                       ["name"] = "resource_id",
                       ["orig"] = "resource_id",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["active"] = true,
                     },
                   },
                 },
@@ -102,20 +107,20 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["active"] = true,
                 ["index$"] = 0,
               },
               {
+                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
+                      ["active"] = true,
                       ["example"] = "d_1b676cd174a9af4704fdb3f9aa58ff5e",
                       ["kind"] = "query",
                       ["name"] = "id",
                       ["orig"] = "id",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["active"] = true,
                     },
                   },
                 },
@@ -133,20 +138,20 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["active"] = true,
                 ["index$"] = 1,
               },
               {
+                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
+                      ["active"] = true,
                       ["example"] = "SELECT * FROM \"d_1b676cd174a9af4704fdb3f9aa58ff5e\" WHERE timestamp >= '2024-07-22' LIMIT 100",
                       ["kind"] = "query",
                       ["name"] = "sql",
                       ["orig"] = "sql",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["active"] = true,
                     },
                   },
                 },
@@ -164,11 +169,9 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["active"] = true,
                 ["index$"] = 2,
               },
             },
-            ["input"] = "data",
             ["key$"] = "load",
           },
         },

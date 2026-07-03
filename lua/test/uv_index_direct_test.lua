@@ -68,12 +68,14 @@ function uv_index_direct_setup(mockres)
   local env = runner.env_override({
     ["UVINDEX_TEST_UV_INDEX_ENTID"] = {},
     ["UVINDEX_TEST_LIVE"] = "FALSE",
+    ["UVINDEX_APIKEY"] = "NONE",
   })
 
   local live = env["UVINDEX_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["UVINDEX_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

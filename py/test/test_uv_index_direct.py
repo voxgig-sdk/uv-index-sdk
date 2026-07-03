@@ -64,12 +64,14 @@ def _uv_index_direct_setup(mockres):
     env = runner.env_override({
         "UVINDEX_TEST_UV_INDEX_ENTID": {},
         "UVINDEX_TEST_LIVE": "FALSE",
+        "UVINDEX_APIKEY": "NONE",
     })
 
     live = env.get("UVINDEX_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("UVINDEX_APIKEY"),
         }
         client = UvIndexSDK(merged_opts)
         return {

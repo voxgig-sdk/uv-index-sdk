@@ -117,6 +117,7 @@ func uv_indexBasicSetup(extra map[string]any) *entityTestSetup {
 		"UVINDEX_TEST_UV_INDEX_ENTID": idmap,
 		"UVINDEX_TEST_LIVE":      "FALSE",
 		"UVINDEX_TEST_EXPLAIN":   "FALSE",
+		"UVINDEX_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["UVINDEX_TEST_UV_INDEX_ENTID"])
@@ -127,6 +128,7 @@ func uv_indexBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["UVINDEX_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["UVINDEX_APIKEY"],
 			},
 			extra,
 		})

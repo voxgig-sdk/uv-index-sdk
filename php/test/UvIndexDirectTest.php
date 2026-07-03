@@ -73,12 +73,14 @@ function uv_index_direct_setup($mockres)
     $env = Runner::env_override([
         "UVINDEX_TEST_UV_INDEX_ENTID" => [],
         "UVINDEX_TEST_LIVE" => "FALSE",
+        "UVINDEX_APIKEY" => "NONE",
     ]);
 
     $live = $env["UVINDEX_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["UVINDEX_APIKEY"],
         ];
         $client = new UvIndexSDK($merged_opts);
         return [

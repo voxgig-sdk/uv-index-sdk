@@ -20,27 +20,7 @@ main: {
       ]
       title: "UV Index API"
       version: "1.0.0"
-      tagline: "Hourly UV index readings for Singapore from data.gov.sg, published between 7am and 7pm"
-      homepage: "https://data.gov.sg"
-      docs_url: "https://data.gov.sg/datasets"
-      license_short: "Singapore Open Data Licence"
-      license_md: `- Data is published under the **Singapore Open Data Licence** by the Government of Singapore.
-- Free to use, share, and adapt for any purpose, including commercial use.
-- Attribution to the source agency (data.gov.sg) is required.
-- Provided on an "as-is" basis; check the official terms at data.gov.sg before relying on it for critical applications.`
-      about_md: `The UV Index API exposes ultraviolet index readings for Singapore, served by [data.gov.sg](https://data.gov.sg), Singapore's official open data portal. Readings are produced from the National Environment Agency's monitoring network and surface as hourly values during daylight hours.
-
-What you get from the API:
-
-- Hourly UV index values published between 7am and 7pm local time
-- Filtering by \`date\` or \`date_time\` query parameters to fetch a specific window
-- A timestamped record per reading suitable for plotting trends or feeding alert thresholds
-
-The underlying endpoint is hosted at \`https://api-open.data.gov.sg/v2/real-time/api/uv\`. CORS is enabled, and no API key or authentication is documented for this endpoint. Rate limits are not publicly stated, so be considerate when polling.`
-      entity_desc: {
-        uv_index: "Hourly ultraviolet index readings for Singapore, returned from the real-time UV endpoint (`/v2/real-time/api/uv`) with optional `date` or `date_time` filters."
-      }
-      auth: false
     }
   }
 }
+

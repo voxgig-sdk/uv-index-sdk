@@ -1,20 +1,8 @@
 # UvIndex SDK
 
-Hourly UV index readings for Singapore from data.gov.sg, published between 7am and 7pm
+UV Index API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About UV Index API
-
-The UV Index API exposes ultraviolet index readings for Singapore, served by [data.gov.sg](https://data.gov.sg), Singapore's official open data portal. Readings are produced from the National Environment Agency's monitoring network and surface as hourly values during daylight hours.
-
-What you get from the API:
-
-- Hourly UV index values published between 7am and 7pm local time
-- Filtering by `date` or `date_time` query parameters to fetch a specific window
-- A timestamped record per reading suitable for plotting trends or feeding alert thresholds
-
-The underlying endpoint is hosted at `https://api-open.data.gov.sg/v2/real-time/api/uv`. CORS is enabled, and no API key or authentication is documented for this endpoint. Rate limits are not publicly stated, so be considerate when polling.
 
 ## Try it
 
@@ -48,27 +36,31 @@ gem install uv-index-sdk
 luarocks install uv-index-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { UvIndexSDK } from 'uv-index'
 
-const client = new UvIndexSDK({})
+const client = new UvIndexSDK({
+  apikey: process.env.UV-INDEX_APIKEY,
+})
 
+// Load uvindex data
+const uvindex = await client.UvIndex().load({})
+console.log(uvindex.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -98,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **UvIndex** | Hourly ultraviolet index readings for Singapore, returned from the real-time UV endpoint (`/v2/real-time/api/uv`) with optional `date` or `date_time` filters. | `/datastore_search` |
+| **UvIndex** |  | `/datastore_search` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -108,15 +100,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from uvindex_sdk import UvIndexSDK
 
-client = UvIndexSDK({})
+client = UvIndexSDK({
+    "apikey": os.environ.get("UV-INDEX_APIKEY"),
+})
 
 
 # Load a specific uvindex
-uvindex, err = client.UvIndex(None).load(
-    {"id": "example_id"}, None
-)
+uvindex, err = client.UvIndex().load({"id": "example_id"})
+print(uvindex)
 ```
 
 ### PHP
@@ -125,13 +119,14 @@ uvindex, err = client.UvIndex(None).load(
 <?php
 require_once 'uvindex_sdk.php';
 
-$client = new UvIndexSDK([]);
+$client = new UvIndexSDK([
+    "apikey" => getenv("UV-INDEX_APIKEY"),
+]);
 
 
 // Load a specific uvindex
-[$uvindex, $err] = $client->UvIndex(null)->load(
-    ["id" => "example_id"], null
-);
+[$uvindex, $err] = $client->UvIndex()->load(["id" => "example_id"]);
+print_r($uvindex);
 ```
 
 ### Golang
@@ -139,8 +134,13 @@ $client = new UvIndexSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/uv-index-sdk/go"
 
-client := sdk.NewUvIndexSDK(map[string]any{})
+client := sdk.NewUvIndexSDK(map[string]any{
+    "apikey": os.Getenv("UV-INDEX_APIKEY"),
+})
 
+// Load uvindex data
+uvindex, err := client.UvIndex(nil).Load(map[string]any{}, nil)
+fmt.Println(uvindex)
 ```
 
 ### Ruby
@@ -148,13 +148,14 @@ client := sdk.NewUvIndexSDK(map[string]any{})
 ```ruby
 require_relative "UvIndex_sdk"
 
-client = UvIndexSDK.new({})
+client = UvIndexSDK.new({
+  "apikey" => ENV["UV-INDEX_APIKEY"],
+})
 
 
 # Load a specific uvindex
-uvindex, err = client.UvIndex(nil).load(
-  { "id" => "example_id" }, nil
-)
+uvindex, err = client.UvIndex().load({ "id" => "example_id" })
+puts uvindex
 ```
 
 ### Lua
@@ -162,13 +163,14 @@ uvindex, err = client.UvIndex(nil).load(
 ```lua
 local sdk = require("uv-index_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("UV-INDEX_APIKEY"),
+})
 
 
 -- Load a specific uvindex
-local uvindex, err = client:UvIndex(nil):load(
-  { id = "example_id" }, nil
-)
+local uvindex, err = client:UvIndex():load({ id = "example_id" })
+print(uvindex)
 ```
 
 ## Unit testing in offline mode
@@ -187,25 +189,21 @@ const result = await client.UvIndex().load({ id: 'test01' })
 ### Python
 
 ```python
-client = UvIndexSDK.test(None, None)
-result, err = client.UvIndex(None).load(
-    {"id": "test01"}, None
-)
+client = UvIndexSDK.test()
+result, err = client.UvIndex().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = UvIndexSDK::test(null, null);
-[$result, $err] = $client->UvIndex(null)->load(
-    ["id" => "test01"], null
-);
+$client = UvIndexSDK::test();
+[$result, $err] = $client->UvIndex()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.UvIndex(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -214,19 +212,15 @@ result, err := client.UvIndex(nil).Load(
 ### Ruby
 
 ```ruby
-client = UvIndexSDK.test(nil, nil)
-result, err = client.UvIndex(nil).load(
-  { "id" => "test01" }, nil
-)
+client = UvIndexSDK.test
+result, err = client.UvIndex().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:UvIndex(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:UvIndex():load({ id = "test01" })
 ```
 
 ## How it works
@@ -330,16 +324,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the UV Index API
-
-- Upstream: [https://data.gov.sg](https://data.gov.sg)
-- API docs: [https://data.gov.sg/datasets](https://data.gov.sg/datasets)
-
-- Data is published under the **Singapore Open Data Licence** by the Government of Singapore.
-- Free to use, share, and adapt for any purpose, including commercial use.
-- Attribution to the source agency (data.gov.sg) is required.
-- Provided on an "as-is" basis; check the official terms at data.gov.sg before relying on it for critical applications.
 
 ---
 
