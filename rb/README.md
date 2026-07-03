@@ -10,13 +10,13 @@ The Ruby SDK for the UvIndex API — an entity-oriented client using idiomatic R
 
 ## Install
 ```bash
-gem install uv-index-sdk
+gem install voxgig-sdk-uv-index
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "uv-index-sdk"
+gem "voxgig-sdk-uv-index"
 ```
 
 Then run:

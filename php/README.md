@@ -10,7 +10,7 @@ The PHP SDK for the UvIndex API — an entity-oriented client using PHP conventi
 
 ## Install
 ```bash
-composer require voxgig/uv-index-sdk
+composer require voxgig-sdk/uv-index
 ```
 
 

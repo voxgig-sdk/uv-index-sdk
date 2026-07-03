@@ -10,7 +10,7 @@ The Python SDK for the UvIndex API — an entity-oriented client following Pytho
 
 ## Install
 ```bash
-pip install uv-index-sdk
+pip install voxgig-sdk-uv-index
 ```
 
 Or install from source:

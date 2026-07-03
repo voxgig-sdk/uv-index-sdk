@@ -10,7 +10,7 @@ The TypeScript SDK for the UvIndex API — a type-safe, entity-oriented client w
 
 ## Install
 ```bash
-npm install uv-index
+npm install @voxgig-sdk/uv-index
 ```
 ## Tutorial: your first API call
 
