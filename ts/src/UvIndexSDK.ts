@@ -204,14 +204,7 @@ class UvIndexSDK {
 
 
 
-  _uv_index?: UvIndexEntity
-
-  // Idiomatic facade: `client.uv_index.list()` / `client.uv_index.load({ id })`.
-  get uv_index(): UvIndexEntity {
-    return (this._uv_index ??= new UvIndexEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.uv_index` instead. */
+  // Entity access: `client.UvIndex().list()` / `client.UvIndex().load({ id })`.
   UvIndex(data?: any) {
     const self = this
     return new UvIndexEntity(self,data)

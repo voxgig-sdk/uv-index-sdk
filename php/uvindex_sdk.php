@@ -233,10 +233,10 @@ class UvIndexSDK
 
     private $_uv_index = null;
 
-    // Idiomatic facade: $client->uv_index()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias UvIndex() (PHP method
-    // names are case-insensitive).
-    public function uv_index($data = null)
+    // Canonical facade: $client->UvIndex()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->uv_index()
+    // resolves here too.
+    public function UvIndex($data = null)
     {
         require_once __DIR__ . '/entity/uv_index_entity.php';
         if ($data === null) {

@@ -80,7 +80,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## UvIndexEntity
 
 ```python
-uv_index = client.uv_index
+uv_index = client.UvIndex()
 ```
 
 ### Fields
@@ -97,7 +97,7 @@ uv_index = client.uv_index
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.uv_index.load({"id": "uv_index_id"})
+result = client.UvIndex().load({"id": "uv_index_id"})
 ```
 
 ### Common Methods

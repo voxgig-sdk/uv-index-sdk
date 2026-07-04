@@ -83,7 +83,7 @@ same parameters as `direct()`.
 ## UvIndexEntity
 
 ```lua
-local uv_index = client:uv_index(nil)
+local uv_index = client:UvIndex(nil)
 ```
 
 ### Fields
@@ -100,7 +100,7 @@ local uv_index = client:uv_index(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:uv_index():load({ id = "uv_index_id" })
+local result, err = client:UvIndex():load({ id = "uv_index_id" })
 ```
 
 ### Common Methods

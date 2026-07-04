@@ -208,13 +208,7 @@ class UvIndexSDK
   end
 
 
-  # Idiomatic facade: client.uv_index.list / client.uv_index.load({ "id" => ... })
-  def uv_index
-    require_relative 'entity/uv_index_entity'
-    @uv_index ||= UvIndexEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.uv_index instead.
+  # Canonical facade: client.UvIndex.list / client.UvIndex.load({ "id" => ... })
   def UvIndex(data = nil)
     require_relative 'entity/uv_index_entity'
     UvIndexEntity.new(self, data)

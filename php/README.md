@@ -33,9 +33,10 @@ $client = new UvIndexSDK();
 
 ```php
 try {
-    $result = $client->uvindex()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare UvIndex record (throws on error).
+    $uvindex = $client->UvIndex()->load(["id" => "example_id"]);
+    print_r($uvindex);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -81,13 +82,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = UvIndexSDK::test();
+$client = UvIndexSDK::test([
+    "entity" => ["uvindex" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->uvindex()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$uvindex = $client->UvIndex()->load(["id" => "test01"]);
+print_r($uvindex);
 ```
 
 ### Use a custom fetch function
@@ -166,7 +171,7 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `UvIndex` | `($data): UvIndexEntity` | Create a UvIndex entity instance. |
+| `UvIndex` | `($data): UvIndexEntity` | Create an UvIndex entity instance. |
 
 ### Entity interface
 
@@ -224,7 +229,7 @@ API path: `/datastore_search`
 
 ### UvIndex
 
-Create an instance: `const uv_index = client.uv_index`
+Create an instance: `$uv_index = $client->UvIndex();`
 
 #### Operations
 
@@ -241,8 +246,9 @@ Create an instance: `const uv_index = client.uv_index`
 
 #### Example: Load
 
-```ts
-const uv_index = await client.uv_index.load({ id: 'uv_index_id' })
+```php
+// load() returns the bare UvIndex record (throws on error).
+$uv_index = $client->UvIndex()->load(["id" => "uv_index_id"]);
 ```
 
 
@@ -317,7 +323,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$uvindex = $client->uvindex();
+$uvindex = $client->UvIndex();
 $uvindex->load(["id" => "example_id"]);
 
 // $uvindex->dataGet() now returns the loaded uvindex data

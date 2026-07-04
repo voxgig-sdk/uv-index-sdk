@@ -32,8 +32,9 @@ client = UvIndexSDK.new
 
 ```ruby
 begin
-  result = client.uvindex.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare UvIndex record (raises on error).
+  uvindex = client.UvIndex.load({ "id" => "example_id" })
+  puts uvindex
 rescue => err
   warn "load failed: #{err}"
 end
@@ -80,13 +81,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = UvIndexSDK.test
+client = UvIndexSDK.test({
+  "entity" => { "uvindex" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.uvindex.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+uvindex = client.UvIndex.load({ "id" => "test01" })
+puts uvindex
 ```
 
 ### Use a custom fetch function
@@ -162,7 +167,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `UvIndex` | `(data) -> UvIndexEntity` | Create a UvIndex entity instance. |
+| `UvIndex` | `(data) -> UvIndexEntity` | Create an UvIndex entity instance. |
 
 ### Entity interface
 
@@ -219,7 +224,7 @@ API path: `/datastore_search`
 
 ### UvIndex
 
-Create an instance: `const uv_index = client.uv_index`
+Create an instance: `uv_index = client.UvIndex`
 
 #### Operations
 
@@ -236,8 +241,9 @@ Create an instance: `const uv_index = client.uv_index`
 
 #### Example: Load
 
-```ts
-const uv_index = await client.uv_index.load({ id: 'uv_index_id' })
+```ruby
+# load returns the bare UvIndex record (raises on error).
+uv_index = client.UvIndex.load({ "id" => "uv_index_id" })
 ```
 
 
@@ -312,7 +318,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-uvindex = client.uvindex
+uvindex = client.UvIndex
 uvindex.load({ "id" => "example_id" })
 
 # uvindex.data_get now returns the loaded uvindex data

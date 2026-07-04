@@ -26,9 +26,9 @@ import { UvIndexSDK } from '@voxgig-sdk/uv-index'
 
 const client = new UvIndexSDK()
 
-// Load uvindex data
-const uvindex = await client.uvindex.load({})
-console.log(uvindex.data)
+// Load uvindex data (returns a UvIndex)
+const uvindex = await client.UvIndex().load()
+console.log(uvindex)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -84,8 +84,8 @@ from uvindex_sdk import UvIndexSDK
 client = UvIndexSDK()
 
 
-# Load a specific uvindex
-uvindex = client.uvindex.load({"id": "example_id"})
+# Load a specific uvindex (returns the record, raises on error)
+uvindex = client.UvIndex().load({"id": "example_id"})
 print(uvindex)
 ```
 
@@ -98,8 +98,8 @@ require_once 'uvindex_sdk.php';
 $client = new UvIndexSDK();
 
 
-// Load a specific uvindex
-$uvindex = $client->uvindex()->load(["id" => "example_id"]);
+// Load a specific uvindex (returns the bare record; throws on error)
+$uvindex = $client->UvIndex()->load(["id" => "example_id"]);
 print_r($uvindex);
 ```
 
@@ -123,8 +123,8 @@ require_relative "UvIndex_sdk"
 client = UvIndexSDK.new
 
 
-# Load a specific uvindex
-uvindex = client.uvindex.load({ "id" => "example_id" })
+# Load a specific uvindex (returns the bare record; raises on error)
+uvindex = client.UvIndex.load({ "id" => "example_id" })
 puts uvindex
 ```
 
@@ -137,7 +137,7 @@ local client = sdk.new()
 
 
 -- Load a specific uvindex
-local uvindex, err = client:uvindex():load({ id = "example_id" })
+local uvindex, err = client:UvIndex():load({ id = "example_id" })
 print(uvindex)
 ```
 
@@ -150,22 +150,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = UvIndexSDK.test()
-const result = await client.uvindex.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const uvindex = await client.UvIndex().load({ id: 'test01' })
+// uvindex is a bare UvIndex populated with mock data
+console.log(uvindex)
 ```
 
 ### Python
 
 ```python
 client = UvIndexSDK.test()
-result = client.uvindex.load({"id": "test01"})
+uvindex = client.UvIndex().load({"id": "test01"})
+print(uvindex)
 ```
 
 ### PHP
 
 ```php
-$client = UvIndexSDK::test();
-$result = $client->uvindex()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = UvIndexSDK::test([
+    "entity" => ["uvindex" => ["test01" => ["id" => "test01"]]],
+]);
+$uvindex = $client->UvIndex()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -180,15 +185,18 @@ result, err := client.UvIndex(nil).Load(
 ### Ruby
 
 ```ruby
-client = UvIndexSDK.test
-result = client.uvindex.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = UvIndexSDK.test({
+  "entity" => { "uvindex" => { "test01" => { "id" => "test01" } } },
+})
+uvindex = client.UvIndex.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:uvindex():load({ id = "test01" })
+local result, err = client:UvIndex():load({ id = "test01" })
 ```
 
 ## How it works
@@ -236,6 +244,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

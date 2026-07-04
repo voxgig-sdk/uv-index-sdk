@@ -33,10 +33,12 @@ client = UvIndexSDK()
 
 ### 3. Load an uvindex
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.uvindex.load({"id": "example_id"})
-    print(result)
+    uvindex = client.UvIndex().load({"id": "example_id"})
+    print(uvindex)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -84,8 +86,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = UvIndexSDK.test()
 
-result = client.uvindex.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+uvindex = client.UvIndex().load({"id": "test01"})
+# uvindex contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -161,7 +164,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
-| `UvIndex` | `(data) -> UvIndexEntity` | Create a UvIndex entity instance. |
+| `UvIndex` | `(data) -> UvIndexEntity` | Create an UvIndex entity instance. |
 
 ### Entity interface
 
@@ -219,7 +222,7 @@ API path: `/datastore_search`
 
 ### UvIndex
 
-Create an instance: `const uv_index = client.uv_index`
+Create an instance: `uv_index = client.UvIndex()`
 
 #### Operations
 
@@ -236,8 +239,8 @@ Create an instance: `const uv_index = client.uv_index`
 
 #### Example: Load
 
-```ts
-const uv_index = await client.uv_index.load({ id: 'uv_index_id' })
+```python
+uv_index = client.UvIndex().load({"id": "uv_index_id"})
 ```
 
 
@@ -311,7 +314,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-uvindex = client.uvindex
+uvindex = client.UvIndex()
 uvindex.load({"id": "example_id"})
 
 # uvindex.data_get() now returns the loaded uvindex data

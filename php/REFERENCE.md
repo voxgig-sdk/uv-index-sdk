@@ -85,7 +85,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## UvIndexEntity
 
 ```php
-$uv_index = $client->uv_index();
+$uv_index = $client->UvIndex();
 ```
 
 ### Fields
@@ -102,7 +102,7 @@ $uv_index = $client->uv_index();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->uv_index()->load(["id" => "uv_index_id"]);
+$result = $client->UvIndex()->load(["id" => "uv_index_id"]);
 ```
 
 ### Common Methods

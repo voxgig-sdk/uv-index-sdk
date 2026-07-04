@@ -86,7 +86,7 @@ same parameters as `direct()`. Raises on error.
 ## UvIndexEntity
 
 ```ruby
-uv_index = client.uv_index
+uv_index = client.UvIndex
 ```
 
 ### Fields
@@ -103,7 +103,7 @@ uv_index = client.uv_index
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.uv_index.load({ "id" => "uv_index_id" })
+result = client.UvIndex.load({ "id" => "uv_index_id" })
 ```
 
 ### Common Methods

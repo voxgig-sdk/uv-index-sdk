@@ -220,25 +220,15 @@ class UvIndexSDK:
         }
 
 
-    @property
-    def uv_index(self):
-        """Idiomatic facade: client.uv_index.list() / client.uv_index.load({"id": ...})."""
-        from entity.uv_index_entity import UvIndexEntity
-        cached = getattr(self, "_uv_index", None)
-        if cached is None:
-            cached = UvIndexEntity(self, None)
-            self._uv_index = cached
-        return cached
-
-    def UvIndex(self, data=None):
-        # Deprecated: use client.uv_index instead.
+    def UvIndex(self, data=None) -> "UvIndexEntity":
+        """Entity factory: client.UvIndex().list({}) / client.UvIndex().load({"id": ...})."""
         from entity.uv_index_entity import UvIndexEntity
         return UvIndexEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "UvIndexSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class UvIndexSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.uv_index_entity import UvIndexEntity

@@ -109,7 +109,7 @@ Alias for `UvIndexSDK.test()`.
 ## UvIndexEntity
 
 ```ts
-const uv_index = client.uv_index
+const uv_index = client.UvIndex()
 ```
 
 ### Fields
@@ -126,7 +126,7 @@ const uv_index = client.uv_index
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.uv_index.load({ id: 'uv_index_id' })
+const result = await client.UvIndex().load({ id: 'uv_index_id' })
 ```
 
 ### Common Methods
