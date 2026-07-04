@@ -245,6 +245,9 @@ func (sdk *UvIndexSDK) Direct(fetchargs map[string]any) (map[string]any, error) 
 }
 
 
+// UvIndex returns a UvIndex entity bound to this client.
+// Idiomatic usage: client.UvIndex(nil).List(nil, nil) or
+// client.UvIndex(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *UvIndexSDK) UvIndex(data map[string]any) UvIndexEntity {
 	return NewUvIndexEntityFunc(sdk, data)
 }

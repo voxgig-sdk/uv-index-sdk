@@ -2,6 +2,8 @@
 
 import { UvIndexEntity } from './entity/UvIndexEntity'
 
+export type * from './UvIndexTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class UvIndexSDK {
 
 
 
+  _uv_index?: UvIndexEntity
+
+  // Idiomatic facade: `client.uv_index.list()` / `client.uv_index.load({ id })`.
+  get uv_index(): UvIndexEntity {
+    return (this._uv_index ??= new UvIndexEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.uv_index` instead. */
   UvIndex(data?: any) {
     const self = this
     return new UvIndexEntity(self,data)

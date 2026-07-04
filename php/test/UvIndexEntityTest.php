@@ -49,8 +49,7 @@ class UvIndexEntityTest extends TestCase
         // LOAD
         $uv_index_ref01_ent = $client->UvIndex(null);
         $uv_index_ref01_match_dt0 = [];
-        [$uv_index_ref01_data_dt0_loaded, $err] = $uv_index_ref01_ent->load($uv_index_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $uv_index_ref01_data_dt0_loaded = $uv_index_ref01_ent->load($uv_index_ref01_match_dt0, null);
         $this->assertNotNull($uv_index_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function uv_index_basic_setup($extra)
         "UVINDEX_TEST_UV_INDEX_ENTID" => $idmap,
         "UVINDEX_TEST_LIVE" => "FALSE",
         "UVINDEX_TEST_EXPLAIN" => "FALSE",
-        "UVINDEX_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function uv_index_basic_setup($extra)
     if ($env["UVINDEX_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["UVINDEX_APIKEY"],
             ],
             $extra ?? [],
         ]);

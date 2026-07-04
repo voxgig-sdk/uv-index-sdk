@@ -15,9 +15,6 @@ def make_config():
         },
         "options": {
             "base": "https://data.gov.sg/api/action",
-            "auth": {
-                "prefix": "Bearer",
-            },
             "headers": {
         "content-type": "application/json",
       },

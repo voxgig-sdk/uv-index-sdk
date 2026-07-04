@@ -49,8 +49,7 @@ class TestUvIndexEntity:
         # LOAD
         uv_index_ref01_ent = client.UvIndex(None)
         uv_index_ref01_match_dt0 = {}
-        uv_index_ref01_data_dt0_loaded, err = uv_index_ref01_ent.load(uv_index_ref01_match_dt0, None)
-        assert err is None
+        uv_index_ref01_data_dt0_loaded = uv_index_ref01_ent.load(uv_index_ref01_match_dt0, None)
         assert uv_index_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _uv_index_basic_setup(extra):
         "UVINDEX_TEST_UV_INDEX_ENTID": idmap,
         "UVINDEX_TEST_LIVE": "FALSE",
         "UVINDEX_TEST_EXPLAIN": "FALSE",
-        "UVINDEX_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _uv_index_basic_setup(extra):
     if env.get("UVINDEX_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("UVINDEX_APIKEY"),
             },
             extra or {},
         ])

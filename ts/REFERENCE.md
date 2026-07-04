@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -110,7 +109,7 @@ Alias for `UvIndexSDK.test()`.
 ## UvIndexEntity
 
 ```ts
-const uv_index = client.UvIndex()
+const uv_index = client.uv_index
 ```
 
 ### Fields
@@ -127,7 +126,7 @@ const uv_index = client.UvIndex()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.UvIndex().load({ id: 'uv_index_id' })
+const result = await client.uv_index.load({ id: 'uv_index_id' })
 ```
 
 ### Common Methods

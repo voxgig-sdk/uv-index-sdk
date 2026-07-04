@@ -85,6 +85,27 @@ func (e *UvIndexEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an UvIndex; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *UvIndexEntity) DataTyped(data ...UvIndex) UvIndex {
+	if len(data) > 0 {
+		return typedFrom[UvIndex](e.Data(asMap(data[0])))
+	}
+	return typedFrom[UvIndex](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through UvIndex (all fields
+// optional at the wire level).
+func (e *UvIndexEntity) MatchTyped(match ...UvIndex) UvIndex {
+	if len(match) > 0 {
+		return typedFrom[UvIndex](e.Match(asMap(match[0])))
+	}
+	return typedFrom[UvIndex](e.Match())
+}
+
 
 func (e *UvIndexEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *UvIndexEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any,
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// UvIndexLoadMatch and returns an UvIndex. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *UvIndexEntity) LoadTyped(reqmatch UvIndexLoadMatch, ctrl map[string]any) (UvIndex, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return UvIndex{}, err
+	}
+	return typedFrom[UvIndex](res), nil
 }
 
 

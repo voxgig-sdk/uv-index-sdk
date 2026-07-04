@@ -91,7 +91,6 @@ function uv_index_basic_setup(extra)
     ["UVINDEX_TEST_UV_INDEX_ENTID"] = idmap,
     ["UVINDEX_TEST_LIVE"] = "FALSE",
     ["UVINDEX_TEST_EXPLAIN"] = "FALSE",
-    ["UVINDEX_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -103,7 +102,6 @@ function uv_index_basic_setup(extra)
   if env["UVINDEX_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["UVINDEX_APIKEY"],
       },
       extra or {},
     })

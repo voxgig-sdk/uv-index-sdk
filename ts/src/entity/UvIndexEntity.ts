@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  UvIndex,
+  UvIndexLoadMatch,
+} from '../UvIndexTypes'
 
 // TODO: needs Entity superclass
-class UvIndexEntity extends UvIndexEntityBase {
+class UvIndexEntity extends UvIndexEntityBase<UvIndex> {
 
   constructor(client: UvIndexSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class UvIndexEntity extends UvIndexEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: UvIndexLoadMatch, ctrl?: Control): Promise<UvIndex> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class UvIndexEntity extends UvIndexEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<UvIndex> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

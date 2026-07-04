@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch UvIndexLoadMatch
+---@param ctrl? table
+---@return UvIndex
+---@return string? err
 function UvIndexEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

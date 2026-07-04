@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -84,7 +83,7 @@ same parameters as `direct()`.
 ## UvIndexEntity
 
 ```lua
-local uv_index = client:UvIndex(nil)
+local uv_index = client:uv_index(nil)
 ```
 
 ### Fields
@@ -101,7 +100,7 @@ local uv_index = client:UvIndex(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:UvIndex():load({ id = "uv_index_id" })
+local result, err = client:uv_index():load({ id = "uv_index_id" })
 ```
 
 ### Common Methods

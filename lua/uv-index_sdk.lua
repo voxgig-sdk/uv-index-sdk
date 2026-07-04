@@ -244,6 +244,19 @@ end
 
 
 
+-- Idiomatic facade: client:uv_index():list() / client:uv_index():load({ id = ... })
+function UvIndexSDK:uv_index(data)
+  local EntityMod = require("entity.uv_index_entity")
+  if data == nil then
+    if self._uv_index == nil then
+      self._uv_index = EntityMod.new(self, nil)
+    end
+    return self._uv_index
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:uv_index() instead.
 function UvIndexSDK:UvIndex(data)
   local EntityMod = require("entity.uv_index_entity")
   return EntityMod.new(self, data)
