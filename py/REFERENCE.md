@@ -8,7 +8,7 @@ Complete API reference for the UvIndex Python SDK.
 ### Constructor
 
 ```python
-from uv-index_sdk import UvIndexSDK
+from uvindex_sdk import UvIndexSDK
 
 client = UvIndexSDK(options)
 ```
@@ -87,8 +87,8 @@ uv_index = client.UvIndex()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `result` | `dict` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -97,7 +97,7 @@ uv_index = client.UvIndex()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.UvIndex().load({"id": "uv_index_id"})
+result = client.UvIndex().load()
 ```
 
 ### Common Methods

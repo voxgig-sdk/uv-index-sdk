@@ -90,8 +90,8 @@ local uv_index = client:UvIndex(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `result` | `table` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -100,7 +100,7 @@ local uv_index = client:UvIndex(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:UvIndex():load({ id = "uv_index_id" })
+local result, err = client:UvIndex():load()
 ```
 
 ### Common Methods

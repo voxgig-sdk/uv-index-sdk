@@ -21,7 +21,7 @@ UvIndex = Struct.new(
   keyword_init: true
 )
 
-# Match filter for UvIndex#load (any subset of UvIndex fields).
+# Request payload for UvIndex#load.
 #
 # @!attribute [rw] result
 #   @return [Hash, nil]

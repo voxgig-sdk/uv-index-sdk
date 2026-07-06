@@ -11,6 +11,8 @@
 ---@field success? boolean
 
 ---@class UvIndexLoadMatch
+---@field result? table
+---@field success? boolean
 
 local M = {}
 

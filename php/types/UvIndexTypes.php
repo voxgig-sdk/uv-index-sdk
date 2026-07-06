@@ -19,7 +19,7 @@ class UvIndex
     public ?bool $success = null;
 }
 
-/** Match filter for UvIndex#load (any subset of UvIndex fields). */
+/** Request payload for UvIndex#load. */
 class UvIndexLoadMatch
 {
     public ?array $result = null;

@@ -97,8 +97,8 @@ uv_index := client.UvIndex(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `result` | `map[string]any` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -107,7 +107,7 @@ uv_index := client.UvIndex(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.UvIndex(nil).Load(map[string]any{"id": "uv_index_id"}, nil)
+result, err := client.UvIndex(nil).Load(nil, nil)
 ```
 
 ### Common Methods

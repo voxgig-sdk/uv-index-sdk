@@ -10,5 +10,8 @@ export interface UvIndex {
   success?: boolean
 }
 
-export type UvIndexLoadMatch = Partial<UvIndex>
+export interface UvIndexLoadMatch {
+  result?: Record<string, any>
+  success?: boolean
+}
 

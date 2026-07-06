@@ -116,8 +116,8 @@ const uv_index = client.UvIndex()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `result` | `Record<string, any>` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -126,7 +126,7 @@ const uv_index = client.UvIndex()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.UvIndex().load({ id: 'uv_index_id' })
+const result = await client.UvIndex().load()
 ```
 
 ### Common Methods

@@ -221,7 +221,7 @@ class UvIndexSDK:
 
 
     def UvIndex(self, data=None) -> "UvIndexEntity":
-        """Entity factory: client.UvIndex().list({}) / client.UvIndex().load({"id": ...})."""
+        """Entity factory: client.UvIndex().list() / client.UvIndex().load({"id": ...})."""
         from entity.uv_index_entity import UvIndexEntity
         return UvIndexEntity(self, data)
 

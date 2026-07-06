@@ -8,7 +8,7 @@ Complete API reference for the UvIndex Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'uv-index_sdk'
+require_relative 'UvIndex_sdk'
 
 client = UvIndexSDK.new(options)
 ```
@@ -93,8 +93,8 @@ uv_index = client.UvIndex
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `result` | `Hash` | No |  |
+| `success` | `Boolean` | No |  |
 
 ### Operations
 
@@ -103,7 +103,7 @@ uv_index = client.UvIndex
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.UvIndex.load({ "id" => "uv_index_id" })
+result = client.UvIndex.load()
 ```
 
 ### Common Methods

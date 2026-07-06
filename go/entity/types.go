@@ -14,8 +14,7 @@ type UvIndex struct {
 	Success *bool `json:"success,omitempty"`
 }
 
-// UvIndexLoadMatch mirrors the uv_index fields as an all-optional match
-// filter (Go analog of Partial<UvIndex>).
+// UvIndexLoadMatch is the typed request payload for UvIndex.LoadTyped.
 type UvIndexLoadMatch struct {
 	Result *map[string]any `json:"result,omitempty"`
 	Success *bool `json:"success,omitempty"`
