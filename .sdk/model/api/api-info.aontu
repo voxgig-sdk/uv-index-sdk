@@ -19,9 +19,9 @@ main: {
           url: "https://data.gov.sg/api/action"
         }
       ]
+      summary: "The UV Index API provides real-time data on ultraviolet index levels for various locations in Singapore."
       title: "UV Index API"
       version: "1.0.0"
+      website: "https://data.gov.sg/datasets?formats=API&sort=relevancy&page=1&resultId=d_1b676cd174a9af4704fdb3f9aa58ff5e"
     }
   }
-}
-

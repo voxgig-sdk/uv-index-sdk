@@ -50,12 +50,12 @@ import (
 func main() {
     client := sdk.New()
 
-    // Load a single uvindex — the value is the loaded record.
-    uvindex, err := client.UvIndex(nil).Load(nil, nil)
+    // Load a single uvIndex — the value is the loaded record.
+    uvIndex, err := client.UvIndex(nil).Load(nil, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(uvindex)
+    fmt.Println(uvIndex)
 }
 ```
 
@@ -135,13 +135,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-uvindex, err := client.UvIndex(nil).Load(
+uvIndex, err := client.UvIndex(nil).Load(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(uvindex) // the returned mock data
+fmt.Println(uvIndex) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -245,9 +245,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    uvindex, err := client.UvIndex(nil).Load(nil, nil)
+    uvIndex, err := client.UvIndex(nil).Load(nil, nil)
     if err != nil { /* handle */ }
-    // uvindex is the returned record
+    // uvIndex is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -272,7 +272,7 @@ API path: `/datastore_search`
 
 ### UvIndex
 
-Create an instance: `uv_index := client.UvIndex(nil)`
+Create an instance: `uvIndex := client.UvIndex(nil)`
 
 #### Operations
 
@@ -290,11 +290,11 @@ Create an instance: `uv_index := client.UvIndex(nil)`
 #### Example: Load
 
 ```go
-uv_index, err := client.UvIndex(nil).Load(nil, nil)
+uvIndex, err := client.UvIndex(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(uv_index) // the loaded record
+fmt.Println(uvIndex) // the loaded record
 ```
 
 

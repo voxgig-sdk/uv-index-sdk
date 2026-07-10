@@ -90,7 +90,8 @@ same parameters as `Direct()`.
 ## UvIndexEntity
 
 ```go
-uv_index := client.UvIndex(nil)
+uvIndex := client.UvIndex(nil)
+fmt.Println(uvIndex.GetName()) // "uv_index"
 ```
 
 ### Fields
@@ -108,6 +109,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.UvIndex(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
