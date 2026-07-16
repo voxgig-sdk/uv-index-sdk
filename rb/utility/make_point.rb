@@ -1,10 +1,16 @@
 # UvIndex SDK utility: make_point
 require_relative 'struct/voxgig_struct'
 require_relative '../core/helpers'
+require_relative '../core/error'
 module UvIndexUtilities
   MakePoint = ->(ctx) {
     if ctx.out["point"]
-      ctx.point = ctx.out["point"]
+      preset = ctx.out["point"]
+      # A feature may short-circuit endpoint resolution by placing an error
+      # in ctx.out["point"] (e.g. an rbac denial): surface it as the error
+      # tuple slot so the operation fails before any network use.
+      return nil, preset if preset.is_a?(UvIndexError)
+      ctx.point = preset
       return ctx.point, nil
     end
 
