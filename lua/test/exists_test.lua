@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- UvIndex SDK exists test
 
 local sdk = require("uv-index_sdk")
 
