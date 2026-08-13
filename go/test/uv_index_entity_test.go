@@ -44,7 +44,7 @@ func TestUvIndexEntity(t *testing.T) {
 		// The basic flow consumes synthetic IDs from the fixture. In live mode
 		// without an *_ENTID env override, those IDs hit the live API and 4xx.
 		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set UVINDEX_TEST_UV_INDEX_ENTID JSON to run live")
+			t.Skip("live entity test uses synthetic IDs from fixture — set UV_INDEX_TEST_UV_INDEX_ENTID JSON to run live")
 			return
 		}
 		client := setup.client
@@ -61,13 +61,19 @@ func TestUvIndexEntity(t *testing.T) {
 
 		// LOAD
 		uvIndexRef01Ent := client.UvIndex(nil)
-		uvIndexRef01MatchDt0 := map[string]any{}
+		uvIndexRef01MatchDt0 := map[string]any{
+			"id": uvIndexRef01Data["id"],
+		}
 		uvIndexRef01DataDt0Loaded, err := uvIndexRef01Ent.Load(uvIndexRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if uvIndexRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		uvIndexRef01DataDt0LoadResult := core.ToMapAny(entityData(uvIndexRef01DataDt0Loaded))
+		if uvIndexRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if uvIndexRef01DataDt0LoadResult["id"] != uvIndexRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})
@@ -110,21 +116,21 @@ func uv_indexBasicSetup(extra map[string]any) *entityTestSetup {
 	// Detect ENTID env override before envOverride consumes it. When live
 	// mode is on without a real override, the basic test runs against synthetic
 	// IDs from the fixture and 4xx's. Surface this so the test can skip.
-	entidEnvRaw := os.Getenv("UVINDEX_TEST_UV_INDEX_ENTID")
+	entidEnvRaw := os.Getenv("UV_INDEX_TEST_UV_INDEX_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 
 	env := envOverride(map[string]any{
-		"UVINDEX_TEST_UV_INDEX_ENTID": idmap,
-		"UVINDEX_TEST_LIVE":      "FALSE",
-		"UVINDEX_TEST_EXPLAIN":   "FALSE",
+		"UV_INDEX_TEST_UV_INDEX_ENTID": idmap,
+		"UV_INDEX_TEST_LIVE":      "FALSE",
+		"UV_INDEX_TEST_EXPLAIN":   "FALSE",
 	})
 
-	idmapResolved := core.ToMapAny(env["UVINDEX_TEST_UV_INDEX_ENTID"])
+	idmapResolved := core.ToMapAny(env["UV_INDEX_TEST_UV_INDEX_ENTID"])
 	if idmapResolved == nil {
 		idmapResolved = core.ToMapAny(idmap)
 	}
 
-	if env["UVINDEX_TEST_LIVE"] == "TRUE" {
+	if env["UV_INDEX_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
 			},
@@ -133,13 +139,13 @@ func uv_indexBasicSetup(extra map[string]any) *entityTestSetup {
 		client = sdk.NewUvIndexSDK(core.ToMapAny(mergedOpts))
 	}
 
-	live := env["UVINDEX_TEST_LIVE"] == "TRUE"
+	live := env["UV_INDEX_TEST_LIVE"] == "TRUE"
 	return &entityTestSetup{
 		client:        client,
 		data:          entityData,
 		idmap:         idmapResolved,
 		env:           env,
-		explain:       env["UVINDEX_TEST_EXPLAIN"] == "TRUE",
+		explain:       env["UV_INDEX_TEST_EXPLAIN"] == "TRUE",
 		live:          live,
 		syntheticOnly: live && !idmapOverridden,
 		now:           time.Now().UnixMilli(),

@@ -93,8 +93,18 @@ uv_index = client.UvIndex
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | `Hash` | No |  |
-| `success` | `Boolean` | No |  |
+| `fields` | `Array` | No |  |
+| `id` | `String` | No |  |
+| `metadata_created` | `String` | No |  |
+| `metadata_modified` | `String` | No |  |
+| `name` | `String` | No |  |
+| `notes` | `String` | No |  |
+| `organization` | `Hash` | No |  |
+| `records` | `Array` | No |  |
+| `resource_id` | `String` | No |  |
+| `resources` | `Array` | No |  |
+| `title` | `String` | No |  |
+| `total` | `Integer` | No |  |
 
 ### Operations
 
@@ -103,7 +113,7 @@ uv_index = client.UvIndex
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.UvIndex.load()
+result = client.UvIndex.load({ "id" => "uv_index_id" })
 ```
 
 ### Common Methods

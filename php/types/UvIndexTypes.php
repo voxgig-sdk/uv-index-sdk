@@ -15,14 +15,34 @@ declare(strict_types=1);
 /** UvIndex entity data model. */
 class UvIndex
 {
-    public ?array $result = null;
-    public ?bool $success = null;
+    public ?array $fields = null;
+    public ?string $id = null;
+    public ?string $metadata_created = null;
+    public ?string $metadata_modified = null;
+    public ?string $name = null;
+    public ?string $notes = null;
+    public ?array $organization = null;
+    public ?array $records = null;
+    public ?string $resource_id = null;
+    public ?array $resources = null;
+    public ?string $title = null;
+    public ?int $total = null;
 }
 
 /** Request payload for UvIndex#load. */
 class UvIndexLoadMatch
 {
-    public ?array $result = null;
-    public ?bool $success = null;
+    public ?array $fields = null;
+    public string $id;
+    public ?string $metadata_created = null;
+    public ?string $metadata_modified = null;
+    public ?string $name = null;
+    public ?string $notes = null;
+    public ?array $organization = null;
+    public ?array $records = null;
+    public ?string $resource_id = null;
+    public ?array $resources = null;
+    public ?string $title = null;
+    public ?int $total = null;
 }
 

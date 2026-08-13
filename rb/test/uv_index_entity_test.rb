@@ -26,7 +26,7 @@ class UvIndexEntityTest < Minitest::Test
     # The basic flow consumes synthetic IDs from the fixture. In live mode
     # without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set UVINDEX_TEST_UV_INDEX_ENTID JSON to run live"
+      skip "live entity test uses synthetic IDs from fixture — set UV_INDEX_TEST_UV_INDEX_ENTID JSON to run live"
       return
     end
     client = setup[:client]
@@ -41,9 +41,13 @@ class UvIndexEntityTest < Minitest::Test
 
     # LOAD
     uv_index_ref01_ent = client.UvIndex(nil)
-    uv_index_ref01_match_dt0 = {}
+    uv_index_ref01_match_dt0 = {
+      "id" => uv_index_ref01_data["id"],
+    }
     uv_index_ref01_data_dt0_loaded = uv_index_ref01_ent.load(uv_index_ref01_match_dt0, nil)
-    assert !uv_index_ref01_data_dt0_loaded.nil?
+    uv_index_ref01_data_dt0_load_result = Helpers.to_map(uv_index_ref01_data_dt0_loaded.respond_to?(:data_get) ? uv_index_ref01_data_dt0_loaded.data_get : uv_index_ref01_data_dt0_loaded)
+    assert !uv_index_ref01_data_dt0_load_result.nil?
+    assert_equal uv_index_ref01_data_dt0_load_result["id"], uv_index_ref01_data["id"]
 
   end
 end
@@ -74,22 +78,22 @@ def uv_index_basic_setup(extra)
   # Detect ENTID env override before envOverride consumes it. When live
   # mode is on without a real override, the basic test runs against synthetic
   # IDs from the fixture and 4xx's. Surface this so the test can skip.
-  entid_env_raw = ENV["UVINDEX_TEST_UV_INDEX_ENTID"]
+  entid_env_raw = ENV["UV_INDEX_TEST_UV_INDEX_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 
   env = Runner.env_override({
-    "UVINDEX_TEST_UV_INDEX_ENTID" => idmap,
-    "UVINDEX_TEST_LIVE" => "FALSE",
-    "UVINDEX_TEST_EXPLAIN" => "FALSE",
+    "UV_INDEX_TEST_UV_INDEX_ENTID" => idmap,
+    "UV_INDEX_TEST_LIVE" => "FALSE",
+    "UV_INDEX_TEST_EXPLAIN" => "FALSE",
   })
 
   idmap_resolved = Helpers.to_map(
-    env["UVINDEX_TEST_UV_INDEX_ENTID"])
+    env["UV_INDEX_TEST_UV_INDEX_ENTID"])
   if idmap_resolved.nil?
     idmap_resolved = Helpers.to_map(idmap)
   end
 
-  if env["UVINDEX_TEST_LIVE"] == "TRUE"
+  if env["UV_INDEX_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
       },
@@ -98,13 +102,13 @@ def uv_index_basic_setup(extra)
     client = UvIndexSDK.new(Helpers.to_map(merged_opts))
   end
 
-  live = env["UVINDEX_TEST_LIVE"] == "TRUE"
+  live = env["UV_INDEX_TEST_LIVE"] == "TRUE"
   {
     client: client,
     data: entity_data,
     idmap: idmap_resolved,
     env: env,
-    explain: env["UVINDEX_TEST_EXPLAIN"] == "TRUE",
+    explain: env["UV_INDEX_TEST_EXPLAIN"] == "TRUE",
     live: live,
     synthetic_only: live && !idmap_overridden,
     now: (Time.now.to_f * 1000).to_i,

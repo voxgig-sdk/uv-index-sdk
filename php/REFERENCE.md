@@ -92,8 +92,18 @@ $uv_index = $client->UvIndex();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | `array` | No |  |
-| `success` | `bool` | No |  |
+| `fields` | `array` | No |  |
+| `id` | `string` | No |  |
+| `metadata_created` | `string` | No |  |
+| `metadata_modified` | `string` | No |  |
+| `name` | `string` | No |  |
+| `notes` | `string` | No |  |
+| `organization` | `array` | No |  |
+| `records` | `array` | No |  |
+| `resource_id` | `string` | No |  |
+| `resources` | `array` | No |  |
+| `title` | `string` | No |  |
+| `total` | `int` | No |  |
 
 ### Operations
 
@@ -102,7 +112,7 @@ $uv_index = $client->UvIndex();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->UvIndex()->load();
+$result = $client->UvIndex()->load(["id" => "uv_index_id"]);
 ```
 
 ### Common Methods

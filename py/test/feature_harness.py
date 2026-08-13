@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import UvIndexControl
-from core.error import UvIndexError
-from core.result import UvIndexResult
-from core.spec import UvIndexSpec
+from uvindex_sdk.config import make_config
+from uvindex_sdk.features import _make_feature
+from uvindex_sdk.core.control import UvIndexControl
+from uvindex_sdk.core.error import UvIndexError
+from uvindex_sdk.core.result import UvIndexResult
+from uvindex_sdk.core.spec import UvIndexSpec
 
 
 # True when this SDK was generated with the named feature.

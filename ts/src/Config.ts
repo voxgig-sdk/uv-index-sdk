@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'UvIndex',
   }
 
 
@@ -56,17 +56,87 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "result",
+          "name": "fields",
           "req": false,
-          "type": "`$OBJECT`",
+          "type": "`$ARRAY`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "success",
+          "name": "id",
           "req": false,
-          "type": "`$BOOLEAN`",
+          "type": "`$STRING`",
           "index$": 1
+        },
+        {
+          "active": true,
+          "name": "metadata_created",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 2
+        },
+        {
+          "active": true,
+          "name": "metadata_modified",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 3
+        },
+        {
+          "active": true,
+          "name": "name",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 4
+        },
+        {
+          "active": true,
+          "name": "notes",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 5
+        },
+        {
+          "active": true,
+          "name": "organization",
+          "req": false,
+          "type": "`$OBJECT`",
+          "index$": 6
+        },
+        {
+          "active": true,
+          "name": "records",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 7
+        },
+        {
+          "active": true,
+          "name": "resource_id",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 8
+        },
+        {
+          "active": true,
+          "name": "resources",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 9
+        },
+        {
+          "active": true,
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 10
+        },
+        {
+          "active": true,
+          "name": "total",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 11
         }
       ],
       "name": "uv_index",
@@ -117,6 +187,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/datastore_search",
               "parts": [
@@ -132,7 +203,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.result`"
               },
               "index$": 0
             },
@@ -151,6 +222,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/package_show",
               "parts": [
@@ -163,7 +235,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.result`"
               },
               "index$": 1
             },
@@ -182,6 +254,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/datastore_search_sql",
               "parts": [
@@ -194,7 +267,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.result`"
               },
               "index$": 2
             }

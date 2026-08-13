@@ -8,12 +8,15 @@ guide: {
   entity: uv_index: {
     path: "/datastore_search": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.result`")|top
     }
     path: "/datastore_search_sql": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.result`")|top
     }
     path: "/package_show": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.result`")|top
     }
   }
 

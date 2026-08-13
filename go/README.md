@@ -51,7 +51,7 @@ func main() {
     client := sdk.New()
 
     // Load a single uvIndex — the value is the loaded record.
-    uvIndex, err := client.UvIndex(nil).Load(nil, nil)
+    uvIndex, err := client.UvIndex(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
@@ -66,7 +66,7 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-uvindex, err := client.UvIndex(nil).Load(nil, nil)
+uvindex, err := client.UvIndex(nil).Load(map[string]any{"id": "example_id"}, nil)
 if err != nil {
     // handle err
     return
@@ -136,7 +136,7 @@ Create a mock client for unit testing — no server required:
 client := sdk.Test()
 
 uvIndex, err := client.UvIndex(nil).Load(
-    nil, nil,
+    map[string]any{"id": "test01"}, nil,
 )
 if err != nil {
     panic(err)
@@ -245,7 +245,7 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    uvIndex, err := client.UvIndex(nil).Load(nil, nil)
+    uvIndex, err := client.UvIndex(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil { /* handle */ }
     // uvIndex is the returned record
 
@@ -258,8 +258,18 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"result"` |  |
-| `"success"` |  |
+| `"fields"` |  |
+| `"id"` |  |
+| `"metadata_created"` |  |
+| `"metadata_modified"` |  |
+| `"name"` |  |
+| `"notes"` |  |
+| `"organization"` |  |
+| `"records"` |  |
+| `"resource_id"` |  |
+| `"resources"` |  |
+| `"title"` |  |
+| `"total"` |  |
 
 Operations: Load.
 
@@ -284,13 +294,23 @@ Create an instance: `uvIndex := client.UvIndex(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `result` | `map[string]any` |  |
-| `success` | `bool` |  |
+| `fields` | `[]any` |  |
+| `id` | `string` |  |
+| `metadata_created` | `string` |  |
+| `metadata_modified` | `string` |  |
+| `name` | `string` |  |
+| `notes` | `string` |  |
+| `organization` | `map[string]any` |  |
+| `records` | `[]any` |  |
+| `resource_id` | `string` |  |
+| `resources` | `[]any` |  |
+| `title` | `string` |  |
+| `total` | `int` |  |
 
 #### Example: Load
 
 ```go
-uvIndex, err := client.UvIndex(nil).Load(nil, nil)
+uvIndex, err := client.UvIndex(nil).Load(map[string]any{"id": "uv_index_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -372,7 +392,7 @@ stores the returned data and match criteria internally.
 
 ```go
 uvindex := client.UvIndex(nil)
-uvindex.Load(nil, nil)
+uvindex.Load(map[string]any{"id": "example_id"}, nil)
 
 // uvindex.Data() now returns the uvindex data from the last load
 // uvindex.Match() returns the last match criteria

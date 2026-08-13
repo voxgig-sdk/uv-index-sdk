@@ -39,7 +39,7 @@ const client = new UvIndexSDK()
 
 ```ts
 try {
-  const uvindex = await client.UvIndex().load()
+  const uvindex = await client.UvIndex().load({ id: 'example_id' })
   console.log(uvindex)
 } catch (err) {
   console.error('load failed:', err)
@@ -53,7 +53,7 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const uvindex = await client.UvIndex().load()
+  const uvindex = await client.UvIndex().load({ id: "example_id" })
   console.log(uvindex)
 } catch (err) {
   console.error('load failed:', err)
@@ -120,8 +120,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = UvIndexSDK.test()
 
-const uvindex = await client.UvIndex().load()
-// uvindex is a bare entity populated with mock response data
+const uvindex = await client.UvIndex().load({ id: 'test01' })
+// uvindex is the entity, populated with mock response data
+// — call uvindex.data() for the record itself
 console.log(uvindex)
 ```
 
@@ -140,11 +141,11 @@ Entity instances remember their last match and data:
 const entity = client.UvIndex()
 
 // First call runs the operation and stores its result
-await entity.load()
+await entity.load({ id: 'example' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data)
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -284,8 +285,18 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `result` |  |
-| `success` |  |
+| `fields` |  |
+| `id` |  |
+| `metadata_created` |  |
+| `metadata_modified` |  |
+| `name` |  |
+| `notes` |  |
+| `organization` |  |
+| `records` |  |
+| `resource_id` |  |
+| `resources` |  |
+| `title` |  |
+| `total` |  |
 
 Operations: load.
 
@@ -310,13 +321,23 @@ Create an instance: `const uv_index = client.UvIndex()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `result` | `Record<string, any>` |  |
-| `success` | `boolean` |  |
+| `fields` | `any[]` |  |
+| `id` | `string` |  |
+| `metadata_created` | `string` |  |
+| `metadata_modified` | `string` |  |
+| `name` | `string` |  |
+| `notes` | `string` |  |
+| `organization` | `Record<string, any>` |  |
+| `records` | `any[]` |  |
+| `resource_id` | `string` |  |
+| `resources` | `any[]` |  |
+| `title` | `string` |  |
+| `total` | `number` |  |
 
 #### Example: Load
 
 ```ts
-const uv_index = await client.UvIndex().load()
+const uv_index = await client.UvIndex().load({ id: 'uv_index_id' })
 ```
 
 
@@ -390,10 +411,10 @@ calls on the same instance can rely on this state.
 
 ```ts
 const uvindex = client.UvIndex()
-await uvindex.load()
+await uvindex.load({ id: "example_id" })
 
 // uvindex.data() now returns the uvindex data from the last `load`
-// uvindex.match() returns the last match criteria
+// uvindex.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

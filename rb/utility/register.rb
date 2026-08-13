@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ UvIndexUtility.registrar = ->(u) {
   u.prepare_params = UvIndexUtilities::PrepareParams
   u.prepare_path = UvIndexUtilities::PreparePath
   u.prepare_query = UvIndexUtilities::PrepareQuery
+  u.graphql_body = UvIndexUtilities::GraphqlBody
+  u.graphql_errors = UvIndexUtilities::GraphqlErrors
   u.result_basic = UvIndexUtilities::ResultBasic
   u.result_body = UvIndexUtilities::ResultBody
   u.result_headers = UvIndexUtilities::ResultHeaders

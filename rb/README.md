@@ -34,8 +34,8 @@ client = UvIndexSDK.new
 
 ```ruby
 begin
-  # load returns the bare UvIndex record (raises on error).
-  uvindex = client.UvIndex.load()
+  # load returns the ENTITY — call data_get for the UvIndex record (raises on error).
+  uvindex = client.UvIndex.load({ "id" => "example_id" })
   puts uvindex
 rescue => err
   warn "load failed: #{err}"
@@ -49,7 +49,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  uvindex = client.UvIndex.load()
+  uvindex = client.UvIndex.load({ "id" => "example_id" })
 rescue => err
   warn "load failed: #{err}"
 end
@@ -112,13 +112,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = UvIndexSDK.test
+client = UvIndexSDK.test({
+  "entity" => { "uvindex" => { "test01" => { "id" => "test01" } } },
+})
 
-# Entity ops return the bare mock record (raises on error).
-uvindex = client.UvIndex.load()
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+uvindex = client.UvIndex.load({ "id" => "test01" })
 puts uvindex
 ```
 
@@ -234,8 +238,18 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `result` |  |
-| `success` |  |
+| `fields` |  |
+| `id` |  |
+| `metadata_created` |  |
+| `metadata_modified` |  |
+| `name` |  |
+| `notes` |  |
+| `organization` |  |
+| `records` |  |
+| `resource_id` |  |
+| `resources` |  |
+| `title` |  |
+| `total` |  |
 
 Operations: Load.
 
@@ -260,14 +274,24 @@ Create an instance: `uv_index = client.UvIndex`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `result` | `Hash` |  |
-| `success` | `Boolean` |  |
+| `fields` | `Array` |  |
+| `id` | `String` |  |
+| `metadata_created` | `String` |  |
+| `metadata_modified` | `String` |  |
+| `name` | `String` |  |
+| `notes` | `String` |  |
+| `organization` | `Hash` |  |
+| `records` | `Array` |  |
+| `resource_id` | `String` |  |
+| `resources` | `Array` |  |
+| `title` | `String` |  |
+| `total` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare UvIndex record (raises on error).
-uv_index = client.UvIndex.load()
+# load returns the ENTITY — call data_get for the UvIndex record (raises on error).
+uv_index = client.UvIndex.load({ "id" => "uv_index_id" })
 ```
 
 
@@ -348,7 +372,7 @@ stores the returned data and match criteria internally.
 
 ```ruby
 uvindex = client.UvIndex
-uvindex.load()
+uvindex.load({ "id" => "example_id" })
 
 # uvindex.data_get now returns the uvindex data from the last load
 # uvindex.match_get returns the last match criteria

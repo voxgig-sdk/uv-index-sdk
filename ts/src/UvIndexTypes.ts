@@ -6,12 +6,32 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface UvIndex {
-  result?: Record<string, any>
-  success?: boolean
+  fields?: any[]
+  id?: string
+  metadata_created?: string
+  metadata_modified?: string
+  name?: string
+  notes?: string
+  organization?: Record<string, any>
+  records?: any[]
+  resource_id?: string
+  resources?: any[]
+  title?: string
+  total?: number
 }
 
 export interface UvIndexLoadMatch {
-  result?: Record<string, any>
-  success?: boolean
+  fields?: any[]
+  id: string
+  metadata_created?: string
+  metadata_modified?: string
+  name?: string
+  notes?: string
+  organization?: Record<string, any>
+  records?: any[]
+  resource_id?: string
+  resources?: any[]
+  title?: string
+  total?: number
 }
 

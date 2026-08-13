@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from uvindex_sdk.utility.voxgig_struct import voxgig_struct as vs
 from uvindex_sdk import UvIndexSDK
-from core import helpers
+from uvindex_sdk.core import helpers
 from test import runner
 
 
@@ -61,11 +61,11 @@ def _uv_index_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "UVINDEX_TEST_UV_INDEX_ENTID": {},
-        "UVINDEX_TEST_LIVE": "FALSE",
+        "UV_INDEX_TEST_UV_INDEX_ENTID": {},
+        "UV_INDEX_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("UVINDEX_TEST_LIVE") == "TRUE"
+    live = env.get("UV_INDEX_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

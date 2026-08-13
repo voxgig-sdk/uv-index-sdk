@@ -36,7 +36,7 @@ local client = sdk.new()
 ### 3. Load an uvindex
 
 ```lua
-local uvindex, err = client:UvIndex():load()
+local uvindex, err = client:UvIndex():load({ id = "example_id" })
 if err then error(err) end
 print(uvindex)
 ```
@@ -48,7 +48,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local uvindex, err = client:UvIndex():load()
+local uvindex, err = client:UvIndex():load({ id = "example_id" })
 if err then error(err) end
 ```
 
@@ -106,7 +106,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:UvIndex():load()
+local result, err = client:UvIndex():load({ id = "test01" })
 -- result is the returned data; err is set on failure
 ```
 
@@ -212,7 +212,7 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local uv_index, err = client:UvIndex():load()
+    local uv_index, err = client:UvIndex():load({ id = "example_id" })
     if err then error(err) end
     -- uv_index is the loaded record
 
@@ -225,8 +225,18 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `result` |  |
-| `success` |  |
+| `fields` |  |
+| `id` |  |
+| `metadata_created` |  |
+| `metadata_modified` |  |
+| `name` |  |
+| `notes` |  |
+| `organization` |  |
+| `records` |  |
+| `resource_id` |  |
+| `resources` |  |
+| `title` |  |
+| `total` |  |
 
 Operations: Load.
 
@@ -251,13 +261,23 @@ Create an instance: `local uv_index = client:UvIndex(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `result` | `table` |  |
-| `success` | `boolean` |  |
+| `fields` | `table` |  |
+| `id` | `string` |  |
+| `metadata_created` | `string` |  |
+| `metadata_modified` | `string` |  |
+| `name` | `string` |  |
+| `notes` | `string` |  |
+| `organization` | `table` |  |
+| `records` | `table` |  |
+| `resource_id` | `string` |  |
+| `resources` | `table` |  |
+| `title` | `string` |  |
+| `total` | `number` |  |
 
 #### Example: Load
 
 ```lua
-local uv_index, err = client:UvIndex():load()
+local uv_index, err = client:UvIndex():load({ id = "uv_index_id" })
 ```
 
 
@@ -338,7 +358,7 @@ stores the returned data and match criteria internally.
 
 ```lua
 local uvindex = client:UvIndex()
-uvindex:load()
+uvindex:load({ id = "example_id" })
 
 -- uvindex:data_get() now returns the uvindex data from the last load
 -- uvindex:match_get() returns the last match criteria

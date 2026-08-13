@@ -35,8 +35,8 @@ $client = new UvIndexSDK();
 
 ```php
 try {
-    // load() returns the bare UvIndex record (throws on error).
-    $uvindex = $client->UvIndex()->load();
+    // load() returns the ENTITY — call data_get() for the UvIndex record (throws on error).
+    $uvindex = $client->UvIndex()->load(["id" => "example_id"]);
     print_r($uvindex);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -51,7 +51,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $uvindex = $client->UvIndex()->load();
+    $uvindex = $client->UvIndex()->load(["id" => "example_id"]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -118,13 +118,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = UvIndexSDK::test();
+$client = UvIndexSDK::test([
+    "entity" => ["uvindex" => ["test01" => ["id" => "test01"]]],
+]);
 
-// Entity ops return the bare mock record (throws on error).
-$uvindex = $client->UvIndex()->load();
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$uvindex = $client->UvIndex()->load(["id" => "test01"]);
 print_r($uvindex);
 ```
 
@@ -222,7 +226,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -244,8 +248,18 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `result` |  |
-| `success` |  |
+| `fields` |  |
+| `id` |  |
+| `metadata_created` |  |
+| `metadata_modified` |  |
+| `name` |  |
+| `notes` |  |
+| `organization` |  |
+| `records` |  |
+| `resource_id` |  |
+| `resources` |  |
+| `title` |  |
+| `total` |  |
 
 Operations: Load.
 
@@ -270,14 +284,24 @@ Create an instance: `$uv_index = $client->UvIndex();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `result` | `array` |  |
-| `success` | `bool` |  |
+| `fields` | `array` |  |
+| `id` | `string` |  |
+| `metadata_created` | `string` |  |
+| `metadata_modified` | `string` |  |
+| `name` | `string` |  |
+| `notes` | `string` |  |
+| `organization` | `array` |  |
+| `records` | `array` |  |
+| `resource_id` | `string` |  |
+| `resources` | `array` |  |
+| `title` | `string` |  |
+| `total` | `int` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare UvIndex record (throws on error).
-$uv_index = $client->UvIndex()->load();
+// load() returns the ENTITY — call data_get() for the UvIndex record (throws on error).
+$uv_index = $client->UvIndex()->load(["id" => "uv_index_id"]);
 ```
 
 
@@ -358,7 +382,7 @@ stores the returned data and match criteria internally.
 
 ```php
 $uvindex = $client->UvIndex();
-$uvindex->load();
+$uvindex->load(["id" => "example_id"]);
 
 // $uvindex->data_get() now returns the uvindex data from the last load
 // $uvindex->match_get() returns the last match criteria

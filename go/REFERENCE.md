@@ -98,8 +98,18 @@ fmt.Println(uvIndex.GetName()) // "uv_index"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | `map[string]any` | No |  |
-| `success` | `bool` | No |  |
+| `fields` | `[]any` | No |  |
+| `id` | `string` | No |  |
+| `metadata_created` | `string` | No |  |
+| `metadata_modified` | `string` | No |  |
+| `name` | `string` | No |  |
+| `notes` | `string` | No |  |
+| `organization` | `map[string]any` | No |  |
+| `records` | `[]any` | No |  |
+| `resource_id` | `string` | No |  |
+| `resources` | `[]any` | No |  |
+| `title` | `string` | No |  |
+| `total` | `int` | No |  |
 
 ### Operations
 
@@ -108,7 +118,7 @@ fmt.Println(uvIndex.GetName()) // "uv_index"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.UvIndex(nil).Load(nil, nil)
+result, err := client.UvIndex(nil).Load(map[string]any{"id": "uv_index_id"}, nil)
 if err != nil {
     panic(err)
 }

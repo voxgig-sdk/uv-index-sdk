@@ -90,8 +90,18 @@ local uv_index = client:UvIndex(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | `table` | No |  |
-| `success` | `boolean` | No |  |
+| `fields` | `table` | No |  |
+| `id` | `string` | No |  |
+| `metadata_created` | `string` | No |  |
+| `metadata_modified` | `string` | No |  |
+| `name` | `string` | No |  |
+| `notes` | `string` | No |  |
+| `organization` | `table` | No |  |
+| `records` | `table` | No |  |
+| `resource_id` | `string` | No |  |
+| `resources` | `table` | No |  |
+| `title` | `string` | No |  |
+| `total` | `number` | No |  |
 
 ### Operations
 
@@ -100,7 +110,7 @@ local uv_index = client:UvIndex(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:UvIndex():load()
+local result, err = client:UvIndex():load({ id = "uv_index_id" })
 ```
 
 ### Common Methods

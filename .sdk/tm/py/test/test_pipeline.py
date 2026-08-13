@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import UvIndexSDK
-from core.error import UvIndexError
-from core.result import UvIndexResult
-from core.response import UvIndexResponse
-from core.spec import UvIndexSpec
-from feature.base_feature import UvIndexBaseFeature
+from projectname_sdk.core.error import UvIndexError
+from projectname_sdk.core.result import UvIndexResult
+from projectname_sdk.core.response import UvIndexResponse
+from projectname_sdk.core.spec import UvIndexSpec
+from projectname_sdk.feature.base_feature import UvIndexBaseFeature
 
 
 def _client():

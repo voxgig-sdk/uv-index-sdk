@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# UvIndex SDK exists test
 
 import pytest
 from uvindex_sdk import UvIndexSDK

@@ -71,11 +71,11 @@ function uv_index_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "UVINDEX_TEST_UV_INDEX_ENTID" => [],
-        "UVINDEX_TEST_LIVE" => "FALSE",
+        "UV_INDEX_TEST_UV_INDEX_ENTID" => [],
+        "UV_INDEX_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["UVINDEX_TEST_LIVE"] === "TRUE";
+    $live = $env["UV_INDEX_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

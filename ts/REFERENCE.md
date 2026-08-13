@@ -116,8 +116,18 @@ const uv_index = client.UvIndex()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | `Record<string, any>` | No |  |
-| `success` | `boolean` | No |  |
+| `fields` | `any[]` | No |  |
+| `id` | `string` | No |  |
+| `metadata_created` | `string` | No |  |
+| `metadata_modified` | `string` | No |  |
+| `name` | `string` | No |  |
+| `notes` | `string` | No |  |
+| `organization` | `Record<string, any>` | No |  |
+| `records` | `any[]` | No |  |
+| `resource_id` | `string` | No |  |
+| `resources` | `any[]` | No |  |
+| `title` | `string` | No |  |
+| `total` | `number` | No |  |
 
 ### Operations
 
@@ -126,7 +136,7 @@ const uv_index = client.UvIndex()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.UvIndex().load()
+const result = await client.UvIndex().load({ id: 'uv_index_id' })
 ```
 
 ### Common Methods

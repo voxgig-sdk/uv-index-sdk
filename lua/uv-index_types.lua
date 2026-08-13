@@ -7,12 +7,32 @@
 -- edit by hand.
 
 ---@class UvIndex
----@field result? table
----@field success? boolean
+---@field fields? table
+---@field id? string
+---@field metadata_created? string
+---@field metadata_modified? string
+---@field name? string
+---@field notes? string
+---@field organization? table
+---@field records? table
+---@field resource_id? string
+---@field resources? table
+---@field title? string
+---@field total? number
 
 ---@class UvIndexLoadMatch
----@field result? table
----@field success? boolean
+---@field fields? table
+---@field id string
+---@field metadata_created? string
+---@field metadata_modified? string
+---@field name? string
+---@field notes? string
+---@field organization? table
+---@field records? table
+---@field resource_id? string
+---@field resources? table
+---@field title? string
+---@field total? number
 
 local M = {}
 

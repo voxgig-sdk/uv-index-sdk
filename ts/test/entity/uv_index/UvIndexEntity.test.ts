@@ -26,8 +26,8 @@ import {
 describe('UvIndexEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when UVINDEX_TEST_LIVE=TRUE.
-  afterEach(liveDelay('UVINDEX_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when UV_INDEX_TEST_LIVE=TRUE.
+  afterEach(liveDelay('UV_INDEX_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = UvIndexSDK.test()
@@ -62,8 +62,9 @@ describe('UvIndexEntity', async () => {
     // LOAD
     const uv_index_ref01_ent = client.UvIndex()
     const uv_index_ref01_match_dt0: any = {}
-    const uv_index_ref01_data_dt0 = await uv_index_ref01_ent.load(uv_index_ref01_match_dt0)
-    assert(null != uv_index_ref01_data_dt0)
+    uv_index_ref01_match_dt0.id = uv_index_ref01_data.id
+    const uv_index_ref01_data_dt0 = (await uv_index_ref01_ent.load(uv_index_ref01_match_dt0)).data()
+    assert(uv_index_ref01_data_dt0.id === uv_index_ref01_data.id)
 
 
   })

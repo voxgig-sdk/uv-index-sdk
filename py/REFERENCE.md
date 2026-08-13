@@ -87,8 +87,18 @@ uv_index = client.UvIndex()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `result` | `dict` | No |  |
-| `success` | `bool` | No |  |
+| `fields` | `list` | No |  |
+| `id` | `str` | No |  |
+| `metadata_created` | `str` | No |  |
+| `metadata_modified` | `str` | No |  |
+| `name` | `str` | No |  |
+| `notes` | `str` | No |  |
+| `organization` | `dict` | No |  |
+| `records` | `list` | No |  |
+| `resource_id` | `str` | No |  |
+| `resources` | `list` | No |  |
+| `title` | `str` | No |  |
+| `total` | `int` | No |  |
 
 ### Operations
 
@@ -97,7 +107,7 @@ uv_index = client.UvIndex()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.UvIndex().load()
+result = client.UvIndex().load({"id": "uv_index_id"})
 ```
 
 ### Common Methods

@@ -29,7 +29,7 @@ describe("UvIndexEntity", function()
     -- The basic flow consumes synthetic IDs from the fixture. In live mode
     -- without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup.synthetic_only then
-      pending("live entity test uses synthetic IDs from fixture — set UVINDEX_TEST_UV_INDEX_ENTID JSON to run live")
+      pending("live entity test uses synthetic IDs from fixture — set UV_INDEX_TEST_UV_INDEX_ENTID JSON to run live")
       return
     end
     local client = setup.client
@@ -44,10 +44,14 @@ describe("UvIndexEntity", function()
 
     -- LOAD
     local uv_index_ref01_ent = client:UvIndex(nil)
-    local uv_index_ref01_match_dt0 = {}
+    local uv_index_ref01_match_dt0 = {
+      id = uv_index_ref01_data["id"],
+    }
     local uv_index_ref01_data_dt0_loaded, err = uv_index_ref01_ent:load(uv_index_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(uv_index_ref01_data_dt0_loaded)
+    local uv_index_ref01_data_dt0_load_result = helpers.to_map(type(uv_index_ref01_data_dt0_loaded) == 'table' and uv_index_ref01_data_dt0_loaded.data_get and uv_index_ref01_data_dt0_loaded:data_get() or uv_index_ref01_data_dt0_loaded)
+    assert.is_not_nil(uv_index_ref01_data_dt0_load_result)
+    assert.are.equal(uv_index_ref01_data_dt0_load_result["id"], uv_index_ref01_data["id"])
 
   end)
 end)
@@ -84,22 +88,22 @@ function uv_index_basic_setup(extra)
   -- Detect ENTID env override before envOverride consumes it. When live
   -- mode is on without a real override, the basic test runs against synthetic
   -- IDs from the fixture and 4xx's. Surface this so the test can skip.
-  local entid_env_raw = os.getenv("UVINDEX_TEST_UV_INDEX_ENTID")
+  local entid_env_raw = os.getenv("UV_INDEX_TEST_UV_INDEX_ENTID")
   local idmap_overridden = entid_env_raw ~= nil and entid_env_raw:match("^%s*{") ~= nil
 
   local env = runner.env_override({
-    ["UVINDEX_TEST_UV_INDEX_ENTID"] = idmap,
-    ["UVINDEX_TEST_LIVE"] = "FALSE",
-    ["UVINDEX_TEST_EXPLAIN"] = "FALSE",
+    ["UV_INDEX_TEST_UV_INDEX_ENTID"] = idmap,
+    ["UV_INDEX_TEST_LIVE"] = "FALSE",
+    ["UV_INDEX_TEST_EXPLAIN"] = "FALSE",
   })
 
   local idmap_resolved = helpers.to_map(
-    env["UVINDEX_TEST_UV_INDEX_ENTID"])
+    env["UV_INDEX_TEST_UV_INDEX_ENTID"])
   if idmap_resolved == nil then
     idmap_resolved = helpers.to_map(idmap)
   end
 
-  if env["UVINDEX_TEST_LIVE"] == "TRUE" then
+  if env["UV_INDEX_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
       },
@@ -108,13 +112,13 @@ function uv_index_basic_setup(extra)
     client = sdk.new(helpers.to_map(merged_opts))
   end
 
-  local live = env["UVINDEX_TEST_LIVE"] == "TRUE"
+  local live = env["UV_INDEX_TEST_LIVE"] == "TRUE"
   return {
     client = client,
     data = entity_data,
     idmap = idmap_resolved,
     env = env,
-    explain = env["UVINDEX_TEST_EXPLAIN"] == "TRUE",
+    explain = env["UV_INDEX_TEST_EXPLAIN"] == "TRUE",
     live = live,
     synthetic_only = live and not idmap_overridden,
     now = os.time() * 1000,

@@ -38,11 +38,11 @@ client = UvIndexSDK()
 
 ### 3. Load an uvindex
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
-    uvindex = client.UvIndex().load()
+    uvindex = client.UvIndex().load({"id": "example_id"})
     print(uvindex)
 except Exception as err:
     print(f"load failed: {err}")
@@ -55,7 +55,7 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    uvindex = client.UvIndex().load()
+    uvindex = client.UvIndex().load({"id": "example_id"})
     print(uvindex)
 except Exception as err:
     print(f"load failed: {err}")
@@ -122,8 +122,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = UvIndexSDK.test()
 
-# Entity ops return the bare record and raise on error.
-uvindex = client.UvIndex().load()
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+uvindex = client.UvIndex().load({"id": "test01"})
 # uvindex contains the mock response record
 ```
 
@@ -218,7 +219,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -240,8 +241,18 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `result` |  |
-| `success` |  |
+| `fields` |  |
+| `id` |  |
+| `metadata_created` |  |
+| `metadata_modified` |  |
+| `name` |  |
+| `notes` |  |
+| `organization` |  |
+| `records` |  |
+| `resource_id` |  |
+| `resources` |  |
+| `title` |  |
+| `total` |  |
 
 Operations: Load.
 
@@ -266,13 +277,23 @@ Create an instance: `uv_index = client.UvIndex()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `result` | `dict` |  |
-| `success` | `bool` |  |
+| `fields` | `list` |  |
+| `id` | `str` |  |
+| `metadata_created` | `str` |  |
+| `metadata_modified` | `str` |  |
+| `name` | `str` |  |
+| `notes` | `str` |  |
+| `organization` | `dict` |  |
+| `records` | `list` |  |
+| `resource_id` | `str` |  |
+| `resources` | `list` |  |
+| `title` | `str` |  |
+| `total` | `int` |  |
 
 #### Example: Load
 
 ```python
-uv_index = client.UvIndex().load()
+uv_index = client.UvIndex().load({"id": "uv_index_id"})
 ```
 
 
@@ -352,7 +373,7 @@ stores the returned data and match criteria internally.
 
 ```python
 uvindex = client.UvIndex()
-uvindex.load()
+uvindex.load({"id": "example_id"})
 
 # uvindex.data_get() now returns the uvindex data from the last load
 # uvindex.match_get() returns the last match criteria

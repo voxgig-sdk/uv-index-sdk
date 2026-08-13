@@ -6,16 +6,71 @@ main: kit: entity: uv_index: {
 
   fields: [
     {
-      name: "result"
+      name: "fields"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "metadata_created"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "metadata_modified"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "notes"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "organization"
       req: false
       type: "`$OBJECT`"
     }
     {
-      name: "success"
+      name: "records"
       req: false
-      type: "`$BOOLEAN`"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "resource_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "resources"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "title"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "total"
+      req: false
+      type: "`$INTEGER`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "uv_index"
   op: {
@@ -74,7 +129,7 @@ main: kit: entity: uv_index: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.result`"
           }
         }
         {
@@ -102,7 +157,7 @@ main: kit: entity: uv_index: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.result`"
           }
         }
         {
@@ -130,7 +185,7 @@ main: kit: entity: uv_index: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.result`"
           }
         }
       ]

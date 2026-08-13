@@ -23,7 +23,7 @@ support (`load`):
 
 ```ts
 const client = new UvIndexSDK()
-const uvindex = await client.UvIndex().load()
+const uvindex = await client.UvIndex().load({ id: "example_id" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = UvIndexSDK.test()
-const uvindex = await client.UvIndex().load()
-// uvindex is a bare UvIndex populated with mock data
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = UvIndexSDK.test({
+  entity: {
+    uv_index: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const uvindex = await client.UvIndex().load({ id: 'test01' })
+// uvindex is the UvIndex entity, populated with mock data
+// — call uvindex.data() for the record itself
 console.log(uvindex)
 ```
 
@@ -48,7 +57,7 @@ console.log(uvindex)
 
 ```python
 client = UvIndexSDK.test()
-uvindex = client.UvIndex().load()
+uvindex = client.UvIndex().load({"id": "test01"})
 print(uvindex)
 ```
 
@@ -57,9 +66,9 @@ print(uvindex)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = UvIndexSDK::test([
-    "entity" => ["uvindex" => ["test01" => []]],
+    "entity" => ["uvindex" => ["test01" => ["id" => "test01"]]],
 ]);
-$uvindex = $client->UvIndex()->load();
+$uvindex = $client->UvIndex()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -67,7 +76,7 @@ $uvindex = $client->UvIndex()->load();
 ```go
 client := sdk.Test()
 result, err := client.UvIndex(nil).Load(
-    nil, nil,
+    map[string]any{"id": "test01"}, nil,
 )
 ```
 
@@ -76,16 +85,16 @@ result, err := client.UvIndex(nil).Load(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = UvIndexSDK.test({
-  "entity" => { "uvindex" => { "test01" => {} } },
+  "entity" => { "uvindex" => { "test01" => { "id" => "test01" } } },
 })
-uvindex = client.UvIndex.load()
+uvindex = client.UvIndex.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:UvIndex():load()
+local result, err = client:UvIndex():load({ id = "test01" })
 ```
 
 ## Packages
@@ -169,7 +178,7 @@ client = UvIndexSDK()
 
 
 # Load a specific uvindex (returns the record, raises on error)
-uvindex = client.UvIndex().load()
+uvindex = client.UvIndex().load({"id": "example_id"})
 print(uvindex)
 ```
 
@@ -182,8 +191,8 @@ require_once 'uvindex_sdk.php';
 $client = new UvIndexSDK();
 
 
-// Load a specific uvindex (returns the bare record; throws on error)
-$uvindex = $client->UvIndex()->load();
+// Load a specific uvindex (returns the ENTITY; call data_get() for the record; throws on error)
+$uvindex = $client->UvIndex()->load(["id" => "example_id"]);
 print_r($uvindex);
 ```
 
@@ -195,7 +204,7 @@ import sdk "github.com/voxgig-sdk/uv-index-sdk/go"
 client := sdk.New()
 
 // Load uvindex data
-uvIndex, err := client.UvIndex(nil).Load(nil, nil)
+uvIndex, err := client.UvIndex(nil).Load(map[string]any{"id": "example_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -210,8 +219,8 @@ require_relative "UvIndex_sdk"
 client = UvIndexSDK.new
 
 
-# Load a specific uvindex (returns the bare record; raises on error)
-uvindex = client.UvIndex.load()
+# Load a specific uvindex (returns the ENTITY; call data_get for the record)
+uvindex = client.UvIndex.load({ "id" => "example_id" })
 puts uvindex
 ```
 
@@ -224,7 +233,7 @@ local client = sdk.new()
 
 
 -- Load a specific uvindex
-local uvindex, err = client:UvIndex():load()
+local uvindex, err = client:UvIndex():load({ id = "example_id" })
 print(uvindex)
 ```
 
@@ -344,6 +353,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://data.gov.sg/api/action](https://data.gov.sg/api/action)
 

@@ -2,27 +2,63 @@
   "existing": {
     "uv_index": {
       "UV_INDEX00": {
-        "result": {},
-        "success": false,
-        "id": "UV_INDEX00"
+        "fields": [],
+        "id": "UV_INDEX00",
+        "metadata_created": "s7a",
+        "metadata_modified": "s7b",
+        "name": "s7c",
+        "notes": "s7d",
+        "organization": {},
+        "records": [],
+        "resource_id": "RESOURCE01",
+        "resources": [],
+        "title": "s82",
+        "total": "s83"
       },
       "UV_INDEX01": {
-        "result": {},
-        "success": false,
-        "id": "UV_INDEX01"
+        "fields": [],
+        "id": "UV_INDEX01",
+        "metadata_created": "sf2",
+        "metadata_modified": "sf3",
+        "name": "sf4",
+        "notes": "sf5",
+        "organization": {},
+        "records": [],
+        "resource_id": "RESOURCE01",
+        "resources": [],
+        "title": "sfa",
+        "total": "sfb"
       },
       "UV_INDEX02": {
-        "result": {},
-        "success": false,
-        "id": "UV_INDEX02"
+        "fields": [],
+        "id": "UV_INDEX02",
+        "metadata_created": "s16a",
+        "metadata_modified": "s16b",
+        "name": "s16c",
+        "notes": "s16d",
+        "organization": {},
+        "records": [],
+        "resource_id": "RESOURCE01",
+        "resources": [],
+        "title": "s172",
+        "total": "s173"
       }
     }
   },
   "new": {
     "uv_index": {
       "uv_index_ref01": {
-        "result": {},
-        "success": false
+        "fields": [],
+        "metadata_created": "s1e2",
+        "metadata_modified": "s1e3",
+        "name": "s1e4",
+        "notes": "s1e5",
+        "organization": {},
+        "records": [],
+        "resource_id": "RESOURCE01",
+        "resources": [],
+        "title": "s1ea",
+        "total": "s1eb"
       }
     }
   }

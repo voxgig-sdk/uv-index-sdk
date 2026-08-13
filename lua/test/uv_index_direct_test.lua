@@ -66,11 +66,11 @@ function uv_index_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["UVINDEX_TEST_UV_INDEX_ENTID"] = {},
-    ["UVINDEX_TEST_LIVE"] = "FALSE",
+    ["UV_INDEX_TEST_UV_INDEX_ENTID"] = {},
+    ["UV_INDEX_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["UVINDEX_TEST_LIVE"] == "TRUE"
+  local live = env["UV_INDEX_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

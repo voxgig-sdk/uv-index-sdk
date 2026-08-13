@@ -43,8 +43,8 @@ class UvIndexTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('UVINDEX_TEST_LIVE');
-        $override = self::getenv('UVINDEX_TEST_OVERRIDE');
+        $live = self::getenv('UV_INDEX_TEST_LIVE');
+        $override = self::getenv('UV_INDEX_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class UvIndexTestRunner
             }
         }
 
-        $explain = self::getenv('UVINDEX_TEST_EXPLAIN');
+        $explain = self::getenv('UV_INDEX_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['UVINDEX_TEST_EXPLAIN'] = $explain;
+            $m['UV_INDEX_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;
