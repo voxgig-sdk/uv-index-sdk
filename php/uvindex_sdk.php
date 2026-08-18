@@ -40,7 +40,7 @@ class UvIndexSDK
         $utility = new UvIndexUtility();
         $this->_utility = $utility;
 
-        $config = UvIndexConfig::make_config();
+        $config = UvIndexConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,
