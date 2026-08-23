@@ -7,6 +7,9 @@ local function make_config()
   return {
     main = {
       name = "UvIndex",
+      slug = "uv-index",
+      version = "0.0.1",
+      target = "lua",
     },
     feature = {
       ["test"] = {
@@ -49,6 +52,7 @@ local function make_config()
           },
           {
             ["name"] = "notes",
+            ["short"] = "Dataset description",
             ["type"] = "`$STRING`",
           },
           {
@@ -73,6 +77,7 @@ local function make_config()
           },
           {
             ["name"] = "total",
+            ["short"] = "Total number of records available",
             ["type"] = "`$INTEGER`",
           },
         },

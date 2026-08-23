@@ -121,13 +121,13 @@ const uv_index = client.UvIndex()
 | `metadata_created` | `string` | No |  |
 | `metadata_modified` | `string` | No |  |
 | `name` | `string` | No |  |
-| `notes` | `string` | No |  |
+| `notes` | `string` | No | Dataset description |
 | `organization` | `Record<string, any>` | No |  |
 | `records` | `any[]` | No |  |
 | `resource_id` | `string` | No |  |
 | `resources` | `any[]` | No |  |
 | `title` | `string` | No |  |
-| `total` | `number` | No |  |
+| `total` | `number` | No | Total number of records available |
 
 ### Operations
 

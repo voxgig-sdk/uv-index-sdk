@@ -253,13 +253,13 @@ On error, `ok` is `false` and `$err` contains the error value.
 | `metadata_created` |  |
 | `metadata_modified` |  |
 | `name` |  |
-| `notes` |  |
+| `notes` | Dataset description |
 | `organization` |  |
 | `records` |  |
 | `resource_id` |  |
 | `resources` |  |
 | `title` |  |
-| `total` |  |
+| `total` | Total number of records available |
 
 Operations: Load.
 
@@ -289,13 +289,13 @@ Create an instance: `$uv_index = $client->UvIndex();`
 | `metadata_created` | `string` |  |
 | `metadata_modified` | `string` |  |
 | `name` | `string` |  |
-| `notes` | `string` |  |
+| `notes` | `string` | Dataset description |
 | `organization` | `array` |  |
 | `records` | `array` |  |
 | `resource_id` | `string` |  |
 | `resources` | `array` |  |
 | `title` | `string` |  |
-| `total` | `int` |  |
+| `total` | `int` | Total number of records available |
 
 #### Example: Load
 

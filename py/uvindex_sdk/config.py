@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "UvIndex",
+            "slug": "uv-index",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -70,6 +73,7 @@ def make_config():
           },
           {
             "name": "notes",
+            "short": "Dataset description",
             "type": "`$STRING`",
           },
           {
@@ -94,6 +98,7 @@ def make_config():
           },
           {
             "name": "total",
+            "short": "Total number of records available",
             "type": "`$INTEGER`",
           },
         ],

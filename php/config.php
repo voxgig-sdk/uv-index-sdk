@@ -33,6 +33,9 @@ class UvIndexConfig
         return [
             "main" => [
                 "name" => "UvIndex",
+                "slug" => "uv-index",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -75,6 +78,7 @@ class UvIndexConfig
             ],
             [
               'name' => 'notes',
+              'short' => 'Dataset description',
               'type' => '`$STRING`',
             ],
             [
@@ -99,6 +103,7 @@ class UvIndexConfig
             ],
             [
               'name' => 'total',
+              'short' => 'Total number of records available',
               'type' => '`$INTEGER`',
             ],
           ],

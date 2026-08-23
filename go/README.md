@@ -6,7 +6,7 @@ The Golang SDK for the UvIndex API — an entity-oriented client using standard 
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.UvIndex(nil)` — each with the same small set of operations (`Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -263,13 +263,13 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | `"metadata_created"` |  |
 | `"metadata_modified"` |  |
 | `"name"` |  |
-| `"notes"` |  |
+| `"notes"` | Dataset description |
 | `"organization"` |  |
 | `"records"` |  |
 | `"resource_id"` |  |
 | `"resources"` |  |
 | `"title"` |  |
-| `"total"` |  |
+| `"total"` | Total number of records available |
 
 Operations: Load.
 
@@ -299,13 +299,13 @@ Create an instance: `uvIndex := client.UvIndex(nil)`
 | `metadata_created` | `string` |  |
 | `metadata_modified` | `string` |  |
 | `name` | `string` |  |
-| `notes` | `string` |  |
+| `notes` | `string` | Dataset description |
 | `organization` | `map[string]any` |  |
 | `records` | `[]any` |  |
 | `resource_id` | `string` |  |
 | `resources` | `[]any` |  |
 | `title` | `string` |  |
-| `total` | `int` |  |
+| `total` | `int` | Total number of records available |
 
 #### Example: Load
 

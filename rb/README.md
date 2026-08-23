@@ -243,13 +243,13 @@ returns a result `Hash` with these keys:
 | `metadata_created` |  |
 | `metadata_modified` |  |
 | `name` |  |
-| `notes` |  |
+| `notes` | Dataset description |
 | `organization` |  |
 | `records` |  |
 | `resource_id` |  |
 | `resources` |  |
 | `title` |  |
-| `total` |  |
+| `total` | Total number of records available |
 
 Operations: Load.
 
@@ -279,13 +279,13 @@ Create an instance: `uv_index = client.UvIndex`
 | `metadata_created` | `String` |  |
 | `metadata_modified` | `String` |  |
 | `name` | `String` |  |
-| `notes` | `String` |  |
+| `notes` | `String` | Dataset description |
 | `organization` | `Hash` |  |
 | `records` | `Array` |  |
 | `resource_id` | `String` |  |
 | `resources` | `Array` |  |
 | `title` | `String` |  |
-| `total` | `Integer` |  |
+| `total` | `Integer` | Total number of records available |
 
 #### Example: Load
 

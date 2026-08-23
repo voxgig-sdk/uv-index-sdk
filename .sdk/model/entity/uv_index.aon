@@ -33,6 +33,7 @@ main: kit: entity: uv_index: {
     {
       name: "notes"
       req: false
+      short: "Dataset description"
       type: "`$STRING`"
     }
     {
@@ -63,6 +64,7 @@ main: kit: entity: uv_index: {
     {
       name: "total"
       req: false
+      short: "Total number of records available"
       type: "`$INTEGER`"
     }
   ]

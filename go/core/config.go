@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "UvIndex",
+			"slug": "uv-index",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -53,6 +56,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "notes",
+						"short": "Dataset description",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -77,6 +81,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "total",
+						"short": "Total number of records available",
 						"type": "`$INTEGER`",
 					},
 				},

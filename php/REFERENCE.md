@@ -97,13 +97,13 @@ $uv_index = $client->UvIndex();
 | `metadata_created` | `string` | No |  |
 | `metadata_modified` | `string` | No |  |
 | `name` | `string` | No |  |
-| `notes` | `string` | No |  |
+| `notes` | `string` | No | Dataset description |
 | `organization` | `array` | No |  |
 | `records` | `array` | No |  |
 | `resource_id` | `string` | No |  |
 | `resources` | `array` | No |  |
 | `title` | `string` | No |  |
-| `total` | `int` | No |  |
+| `total` | `int` | No | Total number of records available |
 
 ### Operations
 

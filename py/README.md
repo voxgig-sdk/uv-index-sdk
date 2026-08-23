@@ -246,13 +246,13 @@ On error, `ok` is `False` and `err` contains the error value.
 | `metadata_created` |  |
 | `metadata_modified` |  |
 | `name` |  |
-| `notes` |  |
+| `notes` | Dataset description |
 | `organization` |  |
 | `records` |  |
 | `resource_id` |  |
 | `resources` |  |
 | `title` |  |
-| `total` |  |
+| `total` | Total number of records available |
 
 Operations: Load.
 
@@ -282,13 +282,13 @@ Create an instance: `uv_index = client.UvIndex()`
 | `metadata_created` | `str` |  |
 | `metadata_modified` | `str` |  |
 | `name` | `str` |  |
-| `notes` | `str` |  |
+| `notes` | `str` | Dataset description |
 | `organization` | `dict` |  |
 | `records` | `list` |  |
 | `resource_id` | `str` |  |
 | `resources` | `list` |  |
 | `title` | `str` |  |
-| `total` | `int` |  |
+| `total` | `int` | Total number of records available |
 
 #### Example: Load
 

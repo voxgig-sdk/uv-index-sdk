@@ -230,13 +230,13 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | `metadata_created` |  |
 | `metadata_modified` |  |
 | `name` |  |
-| `notes` |  |
+| `notes` | Dataset description |
 | `organization` |  |
 | `records` |  |
 | `resource_id` |  |
 | `resources` |  |
 | `title` |  |
-| `total` |  |
+| `total` | Total number of records available |
 
 Operations: Load.
 
@@ -266,13 +266,13 @@ Create an instance: `local uv_index = client:UvIndex(nil)`
 | `metadata_created` | `string` |  |
 | `metadata_modified` | `string` |  |
 | `name` | `string` |  |
-| `notes` | `string` |  |
+| `notes` | `string` | Dataset description |
 | `organization` | `table` |  |
 | `records` | `table` |  |
 | `resource_id` | `string` |  |
 | `resources` | `table` |  |
 | `title` | `string` |  |
-| `total` | `number` |  |
+| `total` | `number` | Total number of records available |
 
 #### Example: Load
 

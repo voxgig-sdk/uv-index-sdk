@@ -98,13 +98,13 @@ uv_index = client.UvIndex
 | `metadata_created` | `String` | No |  |
 | `metadata_modified` | `String` | No |  |
 | `name` | `String` | No |  |
-| `notes` | `String` | No |  |
+| `notes` | `String` | No | Dataset description |
 | `organization` | `Hash` | No |  |
 | `records` | `Array` | No |  |
 | `resource_id` | `String` | No |  |
 | `resources` | `Array` | No |  |
 | `title` | `String` | No |  |
-| `total` | `Integer` | No |  |
+| `total` | `Integer` | No | Total number of records available |
 
 ### Operations
 

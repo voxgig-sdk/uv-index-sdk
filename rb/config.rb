@@ -19,6 +19,9 @@ module UvIndexConfig
     {
       "main" => {
         "name" => "UvIndex",
+        "slug" => "uv-index",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -61,6 +64,7 @@ module UvIndexConfig
             },
             {
               "name" => "notes",
+              "short" => "Dataset description",
               "type" => "`$STRING`",
             },
             {
@@ -85,6 +89,7 @@ module UvIndexConfig
             },
             {
               "name" => "total",
+              "short" => "Total number of records available",
               "type" => "`$INTEGER`",
             },
           ],

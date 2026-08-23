@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -290,13 +290,13 @@ The `prepare()` method returns:
 | `metadata_created` |  |
 | `metadata_modified` |  |
 | `name` |  |
-| `notes` |  |
+| `notes` | Dataset description |
 | `organization` |  |
 | `records` |  |
 | `resource_id` |  |
 | `resources` |  |
 | `title` |  |
-| `total` |  |
+| `total` | Total number of records available |
 
 Operations: load.
 
@@ -326,13 +326,13 @@ Create an instance: `const uv_index = client.UvIndex()`
 | `metadata_created` | `string` |  |
 | `metadata_modified` | `string` |  |
 | `name` | `string` |  |
-| `notes` | `string` |  |
+| `notes` | `string` | Dataset description |
 | `organization` | `Record<string, any>` |  |
 | `records` | `any[]` |  |
 | `resource_id` | `string` |  |
 | `resources` | `any[]` |  |
 | `title` | `string` |  |
-| `total` | `number` |  |
+| `total` | `number` | Total number of records available |
 
 #### Example: Load
 

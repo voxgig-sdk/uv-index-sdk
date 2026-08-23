@@ -103,13 +103,13 @@ fmt.Println(uvIndex.GetName()) // "uv_index"
 | `metadata_created` | `string` | No |  |
 | `metadata_modified` | `string` | No |  |
 | `name` | `string` | No |  |
-| `notes` | `string` | No |  |
+| `notes` | `string` | No | Dataset description |
 | `organization` | `map[string]any` | No |  |
 | `records` | `[]any` | No |  |
 | `resource_id` | `string` | No |  |
 | `resources` | `[]any` | No |  |
 | `title` | `string` | No |  |
-| `total` | `int` | No |  |
+| `total` | `int` | No | Total number of records available |
 
 ### Operations
 

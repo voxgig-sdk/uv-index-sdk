@@ -95,13 +95,13 @@ local uv_index = client:UvIndex(nil)
 | `metadata_created` | `string` | No |  |
 | `metadata_modified` | `string` | No |  |
 | `name` | `string` | No |  |
-| `notes` | `string` | No |  |
+| `notes` | `string` | No | Dataset description |
 | `organization` | `table` | No |  |
 | `records` | `table` | No |  |
 | `resource_id` | `string` | No |  |
 | `resources` | `table` | No |  |
 | `title` | `string` | No |  |
-| `total` | `number` | No |  |
+| `total` | `number` | No | Total number of records available |
 
 ### Operations
 
