@@ -42,6 +42,7 @@ class UvIndexConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
