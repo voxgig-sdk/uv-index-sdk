@@ -32,17 +32,9 @@ class UvIndex
 /** Request payload for UvIndex#load. */
 class UvIndexLoadMatch
 {
-    public ?array $fields = null;
-    public string $id;
-    public ?string $metadata_created = null;
-    public ?string $metadata_modified = null;
-    public ?string $name = null;
-    public ?string $notes = null;
-    public ?array $organization = null;
-    public ?array $records = null;
-    public ?string $resource_id = null;
-    public ?array $resources = null;
-    public ?string $title = null;
-    public ?int $total = null;
+    public ?string $filter = null;
+    public ?int $limit = null;
+    public ?int $offset = null;
+    public string $resource_id;
 }
 

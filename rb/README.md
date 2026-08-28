@@ -35,7 +35,7 @@ client = UvIndexSDK.new
 ```ruby
 begin
   # load returns the ENTITY — call data_get for the UvIndex record (raises on error).
-  uvindex = client.UvIndex.load({ "id" => "example_id" })
+  uvindex = client.UvIndex.load({ "resource_id" => "example_resource_id" })
   puts uvindex
 rescue => err
   warn "load failed: #{err}"
@@ -49,7 +49,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  uvindex = client.UvIndex.load({ "id" => "example_id" })
+  uvindex = client.UvIndex.load({ "resource_id" => "example" })
 rescue => err
   warn "load failed: #{err}"
 end
@@ -112,17 +112,14 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```ruby
-client = UvIndexSDK.test({
-  "entity" => { "uvindex" => { "test01" => { "id" => "test01" } } },
-})
+client = UvIndexSDK.test
 
 # Entity ops return the ENTITY (raises on error);
 # call data_get for the mock record.
-uvindex = client.UvIndex.load({ "id" => "test01" })
+uvindex = client.UvIndex.load({ "resource_id" => "example" })
 puts uvindex
 ```
 
@@ -291,8 +288,31 @@ Create an instance: `uv_index = client.UvIndex`
 
 ```ruby
 # load returns the ENTITY — call data_get for the UvIndex record (raises on error).
-uv_index = client.UvIndex.load({ "id" => "uv_index_id" })
+uv_index = client.UvIndex.load({ "resource_id" => "resource_id" })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -372,7 +392,7 @@ stores the returned data and match criteria internally.
 
 ```ruby
 uvindex = client.UvIndex
-uvindex.load({ "id" => "example_id" })
+uvindex.load({ "resource_id" => "example" })
 
 # uvindex.data_get now returns the uvindex data from the last load
 # uvindex.match_get returns the last match criteria

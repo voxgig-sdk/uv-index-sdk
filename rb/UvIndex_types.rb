@@ -63,54 +63,22 @@ UvIndex = Struct.new(
 
 # Request payload for UvIndex#load.
 #
-# @!attribute [rw] fields
-#   @return [Array, nil]
-#
-# @!attribute [rw] id
-#   @return [String]
-#
-# @!attribute [rw] metadata_created
+# @!attribute [rw] filter
 #   @return [String, nil]
 #
-# @!attribute [rw] metadata_modified
-#   @return [String, nil]
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 #
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] notes
-#   @return [String, nil]
-#
-# @!attribute [rw] organization
-#   @return [Hash, nil]
-#
-# @!attribute [rw] records
-#   @return [Array, nil]
+# @!attribute [rw] offset
+#   @return [Integer, nil]
 #
 # @!attribute [rw] resource_id
-#   @return [String, nil]
-#
-# @!attribute [rw] resources
-#   @return [Array, nil]
-#
-# @!attribute [rw] title
-#   @return [String, nil]
-#
-# @!attribute [rw] total
-#   @return [Integer, nil]
+#   @return [String]
 UvIndexLoadMatch = Struct.new(
-  :fields,
-  :id,
-  :metadata_created,
-  :metadata_modified,
-  :name,
-  :notes,
-  :organization,
-  :records,
+  :filter,
+  :limit,
+  :offset,
   :resource_id,
-  :resources,
-  :title,
-  :total,
   keyword_init: true
 )
 

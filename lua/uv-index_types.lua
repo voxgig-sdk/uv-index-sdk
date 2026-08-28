@@ -21,18 +21,10 @@
 ---@field total? number
 
 ---@class UvIndexLoadMatch
----@field fields? table
----@field id string
----@field metadata_created? string
----@field metadata_modified? string
----@field name? string
----@field notes? string
----@field organization? table
----@field records? table
----@field resource_id? string
----@field resources? table
----@field title? string
----@field total? number
+---@field filter? string
+---@field limit? number
+---@field offset? number
+---@field resource_id string
 
 local M = {}
 

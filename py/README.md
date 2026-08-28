@@ -42,7 +42,7 @@ client = UvIndexSDK()
 
 ```python
 try:
-    uvindex = client.UvIndex().load({"id": "example_id"})
+    uvindex = client.UvIndex().load({"resource_id": "example_resource_id"})
     print(uvindex)
 except Exception as err:
     print(f"load failed: {err}")
@@ -55,7 +55,7 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    uvindex = client.UvIndex().load({"id": "example_id"})
+    uvindex = client.UvIndex().load({"resource_id": "example"})
     print(uvindex)
 except Exception as err:
     print(f"load failed: {err}")
@@ -124,7 +124,7 @@ client = UvIndexSDK.test()
 
 # Entity ops return the ENTITY and raises on error;
 # call data_get() for the record.
-uvindex = client.UvIndex().load({"id": "test01"})
+uvindex = client.UvIndex().load({"resource_id": "example"})
 # uvindex contains the mock response record
 ```
 
@@ -293,8 +293,31 @@ Create an instance: `uv_index = client.UvIndex()`
 #### Example: Load
 
 ```python
-uv_index = client.UvIndex().load({"id": "uv_index_id"})
+uv_index = client.UvIndex().load({"resource_id": "resource_id"})
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -373,7 +396,7 @@ stores the returned data and match criteria internally.
 
 ```python
 uvindex = client.UvIndex()
-uvindex.load({"id": "example_id"})
+uvindex.load({"resource_id": "example"})
 
 # uvindex.data_get() now returns the uvindex data from the last load
 # uvindex.match_get() returns the last match criteria

@@ -32,18 +32,10 @@ class UvIndex(TypedDict, total=False):
 
 
 class UvIndexLoadMatchRequired(TypedDict):
-    id: str
+    resource_id: str
 
 
 class UvIndexLoadMatch(UvIndexLoadMatchRequired, total=False):
-    fields: list
-    metadata_created: str
-    metadata_modified: str
-    name: str
-    notes: str
-    organization: dict
-    records: list
-    resource_id: str
-    resources: list
-    title: str
-    total: int
+    filter: str
+    limit: int
+    offset: int

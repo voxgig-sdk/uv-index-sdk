@@ -30,18 +30,10 @@ type UvIndex struct {
 
 // UvIndexLoadMatch is the typed request payload for UvIndex.LoadTyped.
 type UvIndexLoadMatch struct {
-	Fields *[]any `json:"fields,omitempty"`
-	Id string `json:"id"`
-	MetadataCreated *string `json:"metadata_created,omitempty"`
-	MetadataModified *string `json:"metadata_modified,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Notes *string `json:"notes,omitempty"`
-	Organization *map[string]any `json:"organization,omitempty"`
-	Records *[]any `json:"records,omitempty"`
-	ResourceId *string `json:"resource_id,omitempty"`
-	Resources *[]any `json:"resources,omitempty"`
-	Title *string `json:"title,omitempty"`
-	Total *int `json:"total,omitempty"`
+	Filter *string `json:"filter,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Offset *int `json:"offset,omitempty"`
+	ResourceId string `json:"resource_id"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

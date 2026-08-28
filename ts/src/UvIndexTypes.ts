@@ -21,17 +21,9 @@ export interface UvIndex {
 }
 
 export interface UvIndexLoadMatch {
-  fields?: any[]
-  id: string
-  metadata_created?: string
-  metadata_modified?: string
-  name?: string
-  notes?: string
-  organization?: Record<string, any>
-  records?: any[]
-  resource_id?: string
-  resources?: any[]
-  title?: string
-  total?: number
+  filter?: string
+  limit?: number
+  offset?: number
+  resource_id: string
 }
 
