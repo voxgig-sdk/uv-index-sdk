@@ -40,10 +40,12 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "metadata_created",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "metadata_modified",
             ["type"] = "`$STRING`",
           },
@@ -81,6 +83,10 @@ local function make_config()
             ["short"] = "Total number of records available",
             ["type"] = "`$INTEGER`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "uv_index",
         ["op"] = {
@@ -125,8 +131,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/datastore_search",
-                ["parts"] = {
-                  "datastore_search",
+                ["segments"] = {
+                  {
+                    ["lit"] = "datastore_search",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -139,6 +147,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.result`",
+                },
+                ["parts"] = {
+                  "datastore_search",
                 },
               },
               {
@@ -157,8 +168,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/package_show",
-                ["parts"] = {
-                  "package_show",
+                ["segments"] = {
+                  {
+                    ["lit"] = "package_show",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -168,6 +181,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.result`",
+                },
+                ["parts"] = {
+                  "package_show",
                 },
               },
               {
@@ -186,8 +202,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/datastore_search_sql",
-                ["parts"] = {
-                  "datastore_search_sql",
+                ["segments"] = {
+                  {
+                    ["lit"] = "datastore_search_sql",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -197,6 +215,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.result`",
+                },
+                ["parts"] = {
+                  "datastore_search_sql",
                 },
               },
             },

@@ -66,10 +66,12 @@ class UvIndexConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'metadata_created',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'metadata_modified',
               'type' => '`$STRING`',
             ],
@@ -107,6 +109,10 @@ class UvIndexConfig
               'short' => 'Total number of records available',
               'type' => '`$INTEGER`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'uv_index',
           'op' => [
@@ -151,8 +157,10 @@ class UvIndexConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/datastore_search',
-                  'parts' => [
-                    'datastore_search',
+                  'segments' => [
+                    [
+                      'lit' => 'datastore_search',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -165,6 +173,9 @@ class UvIndexConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.result`',
+                  ],
+                  'parts' => [
+                    'datastore_search',
                   ],
                 ],
                 [
@@ -183,8 +194,10 @@ class UvIndexConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/package_show',
-                  'parts' => [
-                    'package_show',
+                  'segments' => [
+                    [
+                      'lit' => 'package_show',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -194,6 +207,9 @@ class UvIndexConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.result`',
+                  ],
+                  'parts' => [
+                    'package_show',
                   ],
                 ],
                 [
@@ -212,8 +228,10 @@ class UvIndexConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/datastore_search_sql',
-                  'parts' => [
-                    'datastore_search_sql',
+                  'segments' => [
+                    [
+                      'lit' => 'datastore_search_sql',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -223,6 +241,9 @@ class UvIndexConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.result`',
+                  ],
+                  'parts' => [
+                    'datastore_search_sql',
                   ],
                 ],
               ],

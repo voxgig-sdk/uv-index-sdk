@@ -16,11 +16,13 @@ main: kit: entity: uv_index: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "metadata_created"
       req: false
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "metadata_modified"
       req: false
       type: "`$STRING`"
@@ -118,8 +120,10 @@ main: kit: entity: uv_index: {
           }
           method: "GET"
           orig: "/datastore_search"
-          parts: [
-            "datastore_search"
+          segments: [
+            {
+              lit: "datastore_search"
+            }
           ]
           select: {
             exist: [
@@ -149,8 +153,10 @@ main: kit: entity: uv_index: {
           }
           method: "GET"
           orig: "/package_show"
-          parts: [
-            "package_show"
+          segments: [
+            {
+              lit: "package_show"
+            }
           ]
           select: {
             exist: [
@@ -177,8 +183,10 @@ main: kit: entity: uv_index: {
           }
           method: "GET"
           orig: "/datastore_search_sql"
-          parts: [
-            "datastore_search_sql"
+          segments: [
+            {
+              lit: "datastore_search_sql"
+            }
           ]
           select: {
             exist: [

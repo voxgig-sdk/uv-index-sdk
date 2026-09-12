@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -75,10 +86,12 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "metadata_created",
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "metadata_modified",
           "type": "`$STRING`"
         },
@@ -117,6 +130,10 @@ class Config {
           "type": "`$INTEGER`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "uv_index",
       "op": {
         "load": {
@@ -160,8 +177,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/datastore_search",
-              "parts": [
-                "datastore_search"
+              "segments": [
+                {
+                  "lit": "datastore_search"
+                }
               ],
               "select": {
                 "exist": [
@@ -174,7 +193,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.result`"
-              }
+              },
+              "parts": [
+                "datastore_search"
+              ]
             },
             {
               "args": {
@@ -192,8 +214,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/package_show",
-              "parts": [
-                "package_show"
+              "segments": [
+                {
+                  "lit": "package_show"
+                }
               ],
               "select": {
                 "exist": [
@@ -203,7 +227,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.result`"
-              }
+              },
+              "parts": [
+                "package_show"
+              ]
             },
             {
               "args": {
@@ -221,8 +248,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/datastore_search_sql",
-              "parts": [
-                "datastore_search_sql"
+              "segments": [
+                {
+                  "lit": "datastore_search_sql"
+                }
               ],
               "select": {
                 "exist": [
@@ -232,7 +261,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.result`"
-              }
+              },
+              "parts": [
+                "datastore_search_sql"
+              ]
             }
           ]
         }
@@ -248,6 +280,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

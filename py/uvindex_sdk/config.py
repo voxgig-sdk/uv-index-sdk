@@ -1,6 +1,14 @@
 # UvIndex SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -61,10 +69,12 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "metadata_created",
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "metadata_modified",
             "type": "`$STRING`",
           },
@@ -103,6 +113,10 @@ def make_config():
             "type": "`$INTEGER`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "uv_index",
         "op": {
           "load": {
@@ -146,8 +160,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/datastore_search",
-                "parts": [
-                  "datastore_search",
+                "segments": [
+                  {
+                    "lit": "datastore_search",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -161,6 +177,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.result`",
                 },
+                "parts": [
+                  "datastore_search",
+                ],
               },
               {
                 "args": {
@@ -178,8 +197,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/package_show",
-                "parts": [
-                  "package_show",
+                "segments": [
+                  {
+                    "lit": "package_show",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -190,6 +211,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.result`",
                 },
+                "parts": [
+                  "package_show",
+                ],
               },
               {
                 "args": {
@@ -207,8 +231,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/datastore_search_sql",
-                "parts": [
-                  "datastore_search_sql",
+                "segments": [
+                  {
+                    "lit": "datastore_search_sql",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -219,6 +245,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.result`",
                 },
+                "parts": [
+                  "datastore_search_sql",
+                ],
               },
             ],
           },

@@ -44,10 +44,12 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "metadata_created",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "metadata_modified",
 						"type": "`$STRING`",
 					},
@@ -85,6 +87,10 @@ func MakeConfig() map[string]any {
 						"short": "Total number of records available",
 						"type": "`$INTEGER`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "uv_index",
 				"op": map[string]any{
@@ -129,8 +135,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/datastore_search",
-								"parts": []any{
-									"datastore_search",
+								"segments": []any{
+									map[string]any{
+										"lit": "datastore_search",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -143,6 +151,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.result`",
+								},
+								"parts": []any{
+									"datastore_search",
 								},
 							},
 							map[string]any{
@@ -161,8 +172,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/package_show",
-								"parts": []any{
-									"package_show",
+								"segments": []any{
+									map[string]any{
+										"lit": "package_show",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -172,6 +185,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.result`",
+								},
+								"parts": []any{
+									"package_show",
 								},
 							},
 							map[string]any{
@@ -190,8 +206,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/datastore_search_sql",
-								"parts": []any{
-									"datastore_search_sql",
+								"segments": []any{
+									map[string]any{
+										"lit": "datastore_search_sql",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -201,6 +219,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.result`",
+								},
+								"parts": []any{
+									"datastore_search_sql",
 								},
 							},
 						},
@@ -212,6 +233,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (
