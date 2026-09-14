@@ -1,5 +1,5 @@
 {
-  "name": "@voxgig-sdk/uv-index",
+  "name": "@voxgig-sdk/uv-index-sdk",
   "version": "0.0.1",
   "description": "Unofficial generated TypeScript SDK for the UV Index public API. Not affiliated with or endorsed by the upstream API provider.",
   "keywords": [

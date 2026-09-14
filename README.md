@@ -105,7 +105,7 @@ local result, err = client:UvIndex():load({ resource_id = "example" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/uv-index` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uv-index-sdk/releases) |
+| TypeScript | `@voxgig-sdk/uv-index-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uv-index-sdk/releases) |
 | Python | `voxgig-sdk-uv-index` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uv-index-sdk/releases) |
 | PHP | `voxgig-sdk/uv-index` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uv-index-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/uv-index-sdk/go` | `go get github.com/voxgig-sdk/uv-index-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:UvIndex():load({ resource_id = "example" })
 ### TypeScript
 
 ```ts
-import { UvIndexSDK } from '@voxgig-sdk/uv-index'
+import { UvIndexSDK } from '@voxgig-sdk/uv-index-sdk'
 
 const client = new UvIndexSDK()
 
