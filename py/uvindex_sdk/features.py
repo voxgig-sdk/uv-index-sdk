@@ -1,12 +1,18 @@
 # UvIndex SDK feature factory
 
 from uvindex_sdk.feature.base_feature import UvIndexBaseFeature
+from uvindex_sdk.feature.ratelimit_feature import UvIndexRatelimitFeature
+from uvindex_sdk.feature.retry_feature import UvIndexRetryFeature
 from uvindex_sdk.feature.test_feature import UvIndexTestFeature
+from uvindex_sdk.feature.timeout_feature import UvIndexTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: UvIndexBaseFeature(),
+    "ratelimit": lambda: UvIndexRatelimitFeature(),
+    "retry": lambda: UvIndexRetryFeature(),
     "test": lambda: UvIndexTestFeature(),
+    "timeout": lambda: UvIndexTimeoutFeature(),
 }
 
 
