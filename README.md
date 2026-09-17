@@ -105,12 +105,12 @@ local result, err = client:UvIndex():load({ resource_id = "example" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/uv-index-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uv-index-sdk/releases) |
-| Python | `voxgig-sdk-uv-index` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uv-index-sdk/releases) |
-| PHP | `voxgig-sdk/uv-index` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uv-index-sdk/releases) |
+| TypeScript | `@voxgig-sdk/uv-index-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uv-index-sdk/tags) |
+| Python | `voxgig-sdk-uv-index` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uv-index-sdk/tags) |
+| PHP | `voxgig-sdk/uv-index` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uv-index-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/uv-index-sdk/go` | `go get github.com/voxgig-sdk/uv-index-sdk/go@latest` |
-| Ruby | `voxgig-sdk-uv-index` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uv-index-sdk/releases) |
-| Lua | `voxgig-sdk-uv-index` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uv-index-sdk/releases) |
+| Ruby | `voxgig-sdk-uv-index` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uv-index-sdk/tags) |
+| Lua | `voxgig-sdk-uv-index` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uv-index-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/uv-index-sdk/go-cli` | `go install github.com/voxgig-sdk/uv-index-sdk/go-cli/cmd/uv-index@latest` |
 | Go MCP server | `github.com/voxgig-sdk/uv-index-sdk/go-mcp` | `go get github.com/voxgig-sdk/uv-index-sdk/go-mcp@latest` |
 

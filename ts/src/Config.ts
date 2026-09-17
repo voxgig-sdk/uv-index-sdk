@@ -127,9 +127,9 @@ class Config {
 
     entity: {
       
-      uv_index: {
-      },
-
+        uv_index: {
+        },
+  
     }
   }
 
